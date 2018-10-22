@@ -17,6 +17,12 @@
 15. [listPoses](#15)
 16. [assignPoi](#16)
 17. [searchPoi](#17)
+18. [listDevices](#18)
+19. [listDevices3](#19)
+20. [listSensors](#20)
+21. [poi](#21)
+22. [device](#22)
+
 ****
 
 # 接口详情
@@ -782,7 +788,7 @@ cloud.bdsmc.net:8000/addPos?photo_id=xx&device_id=xx&x=xx&y=xx
 * token值无效
 * photo_id或device_id错误
 
-***
+****
 
 ## <div id = 13>13.delPos</div>
 
@@ -836,7 +842,7 @@ cloud.bdsmc.net:8000/delPos?id=xx
 * token值无效
 * id错误
 
-***
+****
 
 ## <div id = 14>14.delImage</div>
 
@@ -891,7 +897,7 @@ cloud.bdsmc.net:8000/delImage?id=xx
 * token值无效
 * id错误
 
-***
+****
 
 ## <div id = 15>15.listPoses</div>
 
@@ -985,7 +991,7 @@ cloud.bdsmc.net:8000/listPoses?id=xx
 * token值无效
 * id错误
 
-***
+****
 
 ## <div id = 16>16.assignPoi</div>
 
@@ -1041,37 +1047,264 @@ cloud.bdsmc.net:8000/listPoses?poiId=xx&id=xx
 * 调用该接口用户不是管理员账户
 * poiId或id存在问题
 
-***
+****
 
-## <div id = 17>17.assignPoi</div>
+## <div id = 17>17.searchPoi</div>
 
 ****
 
 ### 简介
 
-* 将一个监测点分配给一个用户，仅有管理员账户可以调用此接口
+* 使用监测点名称或设备id搜索监测点
 
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/assignPoi
+cloud.bdsmc.net:8000/searchPoi
 
 #### 请求方式
 
-* post
+* get
 * options
 
 #### 参数
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|poiId|是|监测点id|
-|id|是|管理该监测点的账户id|
+|$q|是|搜索参数|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/listPoses?poiId=xx&id=xx
+cloud.bdsmc.net:8000/searchPoi/xxxxxxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": xx,
+        "id2": xx,
+        "project_id": xx,
+        "user_id": xx,
+        "lngflag": xx,
+        "lng": xx,
+        "latflag": xx,
+        "lat": xx,
+        "altitude": xx,
+        "init": xx,
+        "name": "xx",
+        "location": "xx",
+        "props": "xx",
+        "created_at": "xx",
+        "updated_at": "xx",
+        "pinyin": "xx",
+        "photos": [xx],
+        "devices2": [
+            {
+                "id": xx,
+                "id2": "xx",
+                "poi_id": xx,
+                "latflag": xx,
+                "lat": xx,
+                "lngflag": xx,
+                "lng": xx,
+                "altitude": xx,
+                "init": xx,
+                "name": "xx",
+                "type": xx,
+                "dimension": "xx",
+                "unit": "xx",
+                "color":"xx",
+                "online": xx,
+                "created_at": "xx",
+                "updated_at": "xx",
+                "report_cycle": xx,
+                "communication_way": xx,
+                "version_number": xx,
+                "company_name_header": xx,
+                "mac": "xx"
+            },
+            ......
+        ],
+        "devices": [
+            {
+                "id": xx,
+                "id2": "xx",
+                "poi_id": xx,
+                "latflag": xx,
+                "lat": xx,
+                "lngflag": xx,
+                "lng": xx,
+                "altitude": xx,
+                "init": xx,
+                "name": "xx",
+                "type": xx,
+                "dimension": "xx",
+                "unit": "xx",
+                "color": "xx",
+                "online": xx,
+                "created_at": "xx",
+                "updated_at": "xx",
+                "report_cycle": xx,
+                "communication_way": xx,
+                "version_number": xx,
+                "company_name_header": x,
+                "mac": "xx"
+            },
+            ......
+         ]
+    }
+
+```
+
+##### 参数列表
+
+参数与[listPois](#10)接口中返回参数一致
+
+#### 请求失败
+
+* token值无效
+* 当前用户不属于相关项目
+* 查询参数出现问题
+
+****
+
+## <div id = 18>18.listDevices</div>
+
+****
+
+### 简介
+
+* 列出监测点下所有设备的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listDevices
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listDevices?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": xx,
+        "id2": "xx",
+        "poi_id": xx,
+        "latflag": xx,
+        "lat": xx,
+        "lngflag": xx,
+        "lng": xx,
+        "altitude": xx,
+        "init": xx,
+        "name": "xx",
+        "type": xx,
+        "dimension": "xx",
+        "dimension": "xx",
+        "color": "xx",
+        "online": 0,
+        "created_at": "xx",
+        "updated_at": "xx",
+        "report_cycle": xx,
+        "communication_way": xx,
+        "version_number": xx,
+        "company_name_header": xx,
+        "mac": "xx"
+    },
+    ......
+]
+
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|设备id|
+|id2|设备id2|
+|poi_id|监测点id|
+|latflag|经度标志|
+|lat|经度|
+|lngflag|纬度标志|
+|lng|纬度|
+|altitude|高程|
+|init|初始化|
+|name|设备名称|
+|type|设备类型|
+|dimension|范围|
+|color|颜色|
+|online|在线|
+|created_at/updated_at|创建/更新时间|
+|report_cycle|报告周期|
+|communication_way|通信方式|
+|version_number|版本号|
+|company_name_header|公司名称头|
+|mac|设备mac|
+
+#### 请求失败
+
+* token值无效
+* 调用该接口用户不属于该项目或者不是管理员账户
+
+****
+
+## <div id = 19>19.listDevices3</div>
+
+****
+
+### 简介
+
+* 将用户所属的监测点的设备信息，按分页参数返回
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listDevices3
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|ps|是|每页数据条数|
+|pn|页码|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listDevices3?ps=xx&pn=xx
 
 ****
 
@@ -1083,18 +1316,322 @@ cloud.bdsmc.net:8000/listPoses?poiId=xx&id=xx
 
 ```json
 {
-    "message": "assign_ok"
+    "count": 46,
+    "result": [
+        {
+            "id": 612,
+            "id2": "844424933539840",
+            "poi_id": 176,
+            "latflag": 0,
+            "lat": 28.726615,
+            "lngflag": 0,
+            "lng": 111.623234,
+            "altitude": 56.654451,
+            "init": 0,
+            "name": "0",
+            "type": 0,
+            "dimension": "0",
+            "unit": "0",
+            "color": "0",
+            "online": 0,
+            "created_at": "2018-09-13 10:53:44",
+            "updated_at": "2018-09-13 10:54:36",
+            "deleted_at": "2018-09-13 10:54:36",
+            "report_cycle": null,
+            "communication_way": null,
+            "version_number": null,
+            "company_name_header": "BDWX",
+            "mac": "000300000034",
+            "pname": "鼎城区花岩溪乡党家庵村滑坡",
+            "poi_location": "鼎城区花岩溪乡党家庵村滑坡"
+        },
+        ......
+    ]
 }
 
 ```
 
 ##### 参数列表
 
-* 无
+|参数|说明|
+|:-:|:-:|
+|count|符合条件的内容总条数|
+|result|查询得到的监测点信息|
+
 #### 请求失败
 
 * token值无效
-* 调用该接口用户不是管理员账户
-* poiId或id存在问题
+* 用户不是监测点的负责人或者管理员
 
-***
+****
+
+## <div id = 20>20.listSensors</div>
+
+****
+
+### 简介
+
+* 将用户所属的监测点的设备信息，按分页参数返回
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listSensors
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listSensors?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 149,
+        "id2": "1129215706660872",
+        "device_id": 165,
+        "lng": 0,
+        "lat": 0,
+        "name": "小时雨量",
+        "type": 0,
+        "dimension": "",
+        "unit": "ml",
+        "min": -100,
+        "max": 100,
+        "up1": 80,
+        "down1": 70,
+        "up2": 60,
+        "down2": 50,
+        "value": 100,
+        "color": "",
+        "created_at": "2018-05-31 16:27:19",
+        "updated_at": "2018-05-31 16:27:19",
+        "deleted_at": null,
+        "seq": 1
+    },
+    ......
+]
+
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|传感器id|
+|id2|传感器id2|
+|device_id|设备id|
+|lng|经度|
+|lat|纬度|
+|name|名称|
+|type|类型|
+|dimension|范围|
+|unit|单位|
+|min|最小值|
+|max|最大值|
+|up1|一级预警上限|
+|down1|一级预警下线|
+|up2|二级预警上限|
+|down2|二级预警下线|
+|value|数值|
+|color|颜色|
+|created_at/updated_at/deleted_at|增删改时间|
+|seq|排序号|
+
+
+#### 请求失败
+
+* token值无效
+* 设备id出现错误
+
+****
+
+## <div id = 21>21.poi</div>
+
+****
+
+### 简介
+
+* 根据id返回相应监测点的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/poi
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/poi?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 85,
+    "id2": 0,
+    "project_id": 12,
+    "user_id": 20,
+    "lngflag": 0,
+    "lng": 112.708638,
+    "latflag": 0,
+    "lat": 27.979172,
+    "altitude": 0,
+    "init": 0,
+    "name": "nx21",
+    "location": "道林镇靳水村季鱼塘上游组（滑坡）",
+    "props": "",
+    "created_at": "2018-09-13 11:49:41",
+    "updated_at": "2018-09-13 11:49:41"
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|监测点id|
+|id2|监测点id2|
+|project_id|项目id|
+|user_id|用户id|
+|latflag|经度标志|
+|lat|经度|
+|lngflag|纬度标志|
+|lng|纬度|
+|altitude|高程|
+|init|初始化|
+|name|监测点名称|
+|location|监测点位置|
+|props|参数|
+|created_at/updated_at|增改时间|
+
+
+
+#### 请求失败
+
+* token值无效
+* 监测点id出现问题
+* 用户不属于此监测点项目或管理员
+
+****
+
+## <div id = 22>22.poi</div>
+
+****
+
+### 简介
+
+* 根据id返回相应监测点的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/poi
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/poi?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 85,
+    "id2": 0,
+    "project_id": 12,
+    "user_id": 20,
+    "lngflag": 0,
+    "lng": 112.708638,
+    "latflag": 0,
+    "lat": 27.979172,
+    "altitude": 0,
+    "init": 0,
+    "name": "nx21",
+    "location": "道林镇靳水村季鱼塘上游组（滑坡）",
+    "props": "",
+    "created_at": "2018-09-13 11:49:41",
+    "updated_at": "2018-09-13 11:49:41"
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|监测点id|
+|id2|监测点id2|
+|project_id|项目id|
+|user_id|用户id|
+|latflag|经度标志|
+|lat|经度|
+|lngflag|纬度标志|
+|lng|纬度|
+|altitude|高程|
+|init|初始化|
+|name|监测点名称|
+|location|监测点位置|
+|props|参数|
+|created_at/updated_at|增改时间|
+
+
+
+#### 请求失败
+
+* token值无效
+* 监测点id出现问题
+* 用户不属于此监测点项目或管理员
+
+****
