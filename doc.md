@@ -11,7 +11,12 @@
 9. [Del](#9)
 10. [listPois](#10)
 11. [addImage](#11)
-
+12. [addPos](#12)
+13. [delPos](#13)
+14. [delImage](#14)
+15. [listPoses](#15)
+16. [assignPoi](#16)
+17. [searchPoi](#17)
 ****
 
 # 接口详情
@@ -708,5 +713,388 @@ cloud.bdsmc.net:8000/addImage?poi_id=xx
 
 * token值无效
 * poi_id参数错误
+
+***
+
+## <div id = 12>11.addPos</div>
+
+****
+
+### 简介
+
+* 向photopostions表中添加信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addPos
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|photo_id|是|照片id|
+|device_id|是|设备id|
+|x|是|在图片中坐标的x值|
+|y|是|在图片中坐标的y值|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addPos?photo_id=xx&device_id=xx&x=xx&y=xx
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "photo_id": "x",
+    "device_id": "xx",
+    "x": "x",
+    "y": "x",
+    "updated_at": "x",
+    "created_at": "x",
+    "id": x
+}
+```
+
+##### 参数列表
+
+|名称|说明|
+|:-:|:-:|
+|photo_id|照片id|
+|device_id|设备id|
+|x|是|在图片中坐标的x值|
+|y|是|在图片中坐标的y值|
+|updated_at/created_at|创建/更新时间|
+|id|记录表中的id|
+#### 请求失败
+
+* token值无效
+* photo_id或device_id错误
+
+***
+
+## <div id = 13>13.delPos</div>
+
+****
+
+### 简介
+
+* 删除photopostions表中信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPos
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|photopostions表中记录id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPos?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "del_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+***
+
+## <div id = 14>14.delImage</div>
+
+****
+
+### 简介
+
+* 删除图片
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delImage
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|所需删除图片的id|
+|del_flag|否|若存在该项字段说明只删除图片表中的一项信息，若值为1删除项目图片，若为其他值删除项目描述图片
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delImage?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "del_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+***
+
+## <div id = 15>15.listPoses</div>
+
+****
+
+### 简介
+
+* 查询一张图片中的所有描述信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listPoses
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|所需查询图片的id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listPoses?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": xx,
+    "poi_id": xx,
+    "path": "xx",
+    "created_at": "xx",
+    "updated_at": "xx",
+    "info_path": "xx",
+    "devices": [
+        {
+            "id": xx,
+            "photo_id": xx,
+            "device_id": xx,
+            "x": xx,
+            "y": xx,
+            "created_at": "xxx",
+            "updated_at": "xxx",
+            "device": null
+        },
+        ......
+    ]
+    "photopostions": [
+        {
+            "id": xx,
+            "photo_id": xx,
+            "device_id": xx,
+            "x": xx,
+            "y": xx,
+            "created_at": "xx",
+            "updated_at": "xx",
+            "device": xx
+        },
+        ......
+    ]
+}
+
+```
+
+##### 参数列表
+
+|名称|说明|
+|:-:|:-:|
+|id|查询图片的id|
+|poi_id|所属监测点的id|
+|path|图片路径
+|created_at/updated_at|创建/更新时间|
+|info_path|项目信息图片路径|
+|devices|监测点图片中的设备信息|
+|photopostions|图片中描述信息的参数|
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+***
+
+## <div id = 16>16.assignPoi</div>
+
+****
+
+### 简介
+
+* 将一个监测点分配给一个用户，仅有管理员账户可以调用此接口
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/assignPoi
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|poiId|是|监测点id|
+|id|是|管理该监测点的账户id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listPoses?poiId=xx&id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "assign_ok"
+}
+
+```
+
+##### 参数列表
+
+* 无
+#### 请求失败
+
+* token值无效
+* 调用该接口用户不是管理员账户
+* poiId或id存在问题
+
+***
+
+## <div id = 17>17.assignPoi</div>
+
+****
+
+### 简介
+
+* 将一个监测点分配给一个用户，仅有管理员账户可以调用此接口
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/assignPoi
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|poiId|是|监测点id|
+|id|是|管理该监测点的账户id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listPoses?poiId=xx&id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "assign_ok"
+}
+
+```
+
+##### 参数列表
+
+* 无
+#### 请求失败
+
+* token值无效
+* 调用该接口用户不是管理员账户
+* poiId或id存在问题
 
 ***
