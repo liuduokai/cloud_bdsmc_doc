@@ -22,6 +22,8 @@
 20. [listSensors](#20)
 21. [poi](#21)
 22. [device](#22)
+23. [devicedata](#23)
+24. [history](#24)
 
 ****
 
@@ -1550,19 +1552,19 @@ cloud.bdsmc.net:8000/poi?id=xx
 
 ****
 
-## <div id = 22>22.poi</div>
+## <div id = 22>22.device</div>
 
 ****
 
 ### 简介
 
-* 根据id返回相应监测点的信息
+* 根据id返回相应设备及其属于的监测点的信息
 
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/poi
+cloud.bdsmc.net:8000/device
 
 #### 请求方式
 
@@ -1573,11 +1575,11 @@ cloud.bdsmc.net:8000/poi
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|是|监测点id|
+|id|是|设备id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/poi?id=xx
+cloud.bdsmc.net:8000/device?id=xx
 
 ****
 
@@ -1589,21 +1591,45 @@ cloud.bdsmc.net:8000/poi?id=xx
 
 ```json
 {
-    "id": 85,
-    "id2": 0,
-    "project_id": 12,
-    "user_id": 20,
-    "lngflag": 0,
-    "lng": 112.708638,
+    "id": 256,
+    "id2": "1407370588651520",
+    "mac": "0004FFFF0001",
+    "poi_id": 185,
     "latflag": 0,
-    "lat": 27.979172,
+    "lat": 0,
+    "lngflag": 0,
+    "lng": 0,
     "altitude": 0,
     "init": 0,
-    "name": "nx21",
-    "location": "道林镇靳水村季鱼塘上游组（滑坡）",
-    "props": "",
-    "created_at": "2018-09-13 11:49:41",
-    "updated_at": "2018-09-13 11:49:41"
+    "name": "雨量计",
+    "type": 0,
+    "dimension": "",
+    "unit": "",
+    "color": "",
+    "online": 0,
+    "created_at": "2018-08-21 20:17:47",
+    "updated_at": "2018-08-21 20:17:47",
+    "report_cycle": null,
+    "communication_way": null,
+    "version_number": null,
+    "company_name_header": null,
+    "poi": {
+        "id": 185,
+        "id2": 1,
+        "project_id": 20,
+        "user_id": 376,
+        "lngflag": 0,
+        "lng": 213,
+        "latflag": 0,
+        "lat": 1,
+        "altitude": 1,
+        "init": 0,
+        "name": "测试1",
+        "location": "长沙",
+        "props": "",
+        "created_at": "2018-08-16 10:08:15",
+        "updated_at": "2018-08-16 10:08:15"
+    }
 }
 ```
 
@@ -1611,27 +1637,199 @@ cloud.bdsmc.net:8000/poi?id=xx
 
 |参数|说明|
 |:-:|:-:|
-|id|监测点id|
-|id2|监测点id2|
-|project_id|项目id|
-|user_id|用户id|
+|id|设备id|
+|id2|设备id2|
+|mac|设备mac|
+|poi_id|设备属于的监测点id|
 |latflag|经度标志|
 |lat|经度|
 |lngflag|纬度标志|
 |lng|纬度|
 |altitude|高程|
 |init|初始化|
-|name|监测点名称|
-|location|监测点位置|
-|props|参数|
-|created_at/updated_at|增改时间|
-
-
+|name|设备名称|
+|type|设备类型|
+|dimension|范围|
+|color|颜色|
+|online|在线|
+|created_at/updated_at|创建/更新时间|
+|report_cycle|报告周期|
+|communication_way|通信方式|
+|version_number|版本号|
+|company_name_header|公司名称头|
+|poi|相关监测点信息|
 
 #### 请求失败
 
 * token值无效
-* 监测点id出现问题
-* 用户不属于此监测点项目或管理员
+* 设备id出现问题
+* 用户不属于此设备属于的监测点项目或管理员
+
+****
+
+## <div id = 23>23.devicedata</div>
+
+****
+
+### 简介
+
+* 根据id返回相应设备及其属于的监测点的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/devicedata
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|type|是|查询类型，=1时按小时查询，=2时按天查询|
+|device_id|是|设备id|
+|start|否|开始时间|
+|end|否|结束时间|
+#### 请求示例
+
+cloud.bdsmc.net:8000/devicedata?type=xx&device_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "request": {
+        "device_id": "1053",
+        "type": "1",
+        "image": {}
+    },
+    "data": [
+        {
+            "id": 2371542,
+            "gps_time": "2018-09-30 15:00:00",
+            "device_id": 1053,
+            "displacement": 111.622460906
+        },
+        ......
+    ],
+    "elapsed time": "0.0025860319213867 s",
+      "dataChange": [
+        {
+            "displacement": 0,
+            "gps_time": "2018-09-30 15:00:00",
+            "device_id": 1053
+        },
+        ......
+      ]
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|request|请求信息|
+|data|设备中的传感器数据|
+|elapsed time|函数运行时间|
+|dataChange|数据变化值|
+
+#### 请求失败
+
+* token值无效
+* 设备id出现问题
+* 用户不属于此设备属于的监测点项目或管理员
+
+****
+
+## <div id = 24>24.history</div>
+
+****
+
+### 简介
+
+* 根据设备id返回相应设备在指定时间段中的历史数据
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/history
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备id|
+|start|是|开始时间|
+|end|是|结束时间|
+#### 请求示例
+
+cloud.bdsmc.net:8000/devicedata?id=xx&start=xx&end=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "request": {
+        "device_id": "1053",
+        "type": "1",
+        "image": {}
+    },
+    "data": [
+        {
+            "id": 2371542,
+            "gps_time": "2018-09-30 15:00:00",
+            "device_id": 1053,
+            "displacement": 111.622460906
+        },
+        ......
+    ],
+    "elapsed time": "0.0025860319213867 s",
+      "dataChange": [
+        {
+            "displacement": 0,
+            "gps_time": "2018-09-30 15:00:00",
+            "device_id": 1053
+        },
+        ......
+      ]
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|request|请求信息|
+|data|设备中的传感器数据|
+|elapsed time|函数运行时间|
+|dataChange|数据变化值|
+
+#### 请求失败
+
+* token值无效
+* 设备id出现问题
+* 用户不属于此设备属于的监测点项目或管理员
 
 ****
