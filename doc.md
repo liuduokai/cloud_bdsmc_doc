@@ -44,6 +44,8 @@
 42. [addUserList](#42)
 43. [updateUser](#43)
 44. [delUser](#44)
+45. [addProjectFile2](#45)
+46. [listProjects2](#46)
 
 ****
 
@@ -835,7 +837,7 @@ cloud.bdsmc.net:8000/delPos
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|photopostions表中记录id|
+|id|是|photopostions表中记录id|
 
 #### 请求示例
 
@@ -889,7 +891,7 @@ cloud.bdsmc.net:8000/delImage
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|所需删除图片的id|
+|id|是|所需删除图片的id|
 |del_flag|否|若存在该项字段说明只删除图片表中的一项信息，若值为1删除项目图片，若为其他值删除项目描述图片
 
 #### 请求示例
@@ -2701,7 +2703,7 @@ cloud.bdsmc.net:8000/getPWD
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|phone|手机号码|
+|phone|是|手机号码|
 
 #### 请求示例
 
@@ -2753,8 +2755,8 @@ cloud.bdsmc.net:8000/login2
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|phone|手机号码|
-|password|验证码|
+|phone|是|手机号码|
+|password|是|验证码|
 
 #### 请求示例
 
@@ -3234,5 +3236,105 @@ cloud.bdsmc.net:8000/delUser?id=xx
 
 * token值无效
 * 用户id错误
+  
+****
+
+## <div id = 45>45.addProjectFile2</div>
+
+****
+
+### 简介
+
+* 上传项目地图的边界文件
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addProjectFile2
+
+#### 请求方式
+
+* get
+* options
+* post
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|pro_bord_path|是|项目地图边界文件|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addProjectFile2
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 文件错误
+  
+****
+
+## <div id = 46>45.listProjects2</div>
+
+****
+
+### 简介
+
+* 返回项目相关信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listProjects2
+
+#### 请求方式
+
+* get
+* options
+* post
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listProjects2
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 文件错误
   
 ****
