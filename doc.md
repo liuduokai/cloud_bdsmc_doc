@@ -37,6 +37,9 @@
 35. [handleCameraAlarm](#35)
 36. [getPWD](#36)
 37. [login2](#37)
+38. [counts](#38)
+39. [user2](#39)
+40. [listUsers](#40)
 
 ****
 
@@ -2730,13 +2733,12 @@ cloud.bdsmc.net:8000/getPWD?phone=xxxx
 
 ### 简介
 
-* 生成短信验证码，并将相应验证码发送给相应的手机
-
+* 通过手机号码进行登录
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/getPWD
+cloud.bdsmc.net:8000/login2
 
 #### 请求方式
 
@@ -2748,10 +2750,11 @@ cloud.bdsmc.net:8000/getPWD
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |phone|手机号码|
+|password|验证码|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/getPWD?phone=xxxx
+cloud.bdsmc.net:8000/getPWD?phone=xxxx&password=xxx
 
 ****
 
@@ -2763,16 +2766,220 @@ cloud.bdsmc.net:8000/getPWD?phone=xxxx
 
 ```json
 {
-    "message": "send it"
+    "access_token": "xxx",
+    "token_type": "xxx",
+    "me": {
+        "id": xx,
+        "email": "xx",
+        "name": "xx",
+        "phone": "xx",
+        "gender": xx,
+        "id_number": "xx",
+        "home": "xx",
+        "project_id": xx,
+        "type": xx,
+        "created_at": "xx",
+        "updated_at": "xx",
+        "pro_blo": xx,
+        "project": {
+            "id": xx,
+            "name": "xx",
+            "type": xx,
+            "created_at": "xx",
+            "updated_at": "xx",
+            "lt_point": "xx",
+            "rd_point": "xx",
+            "sate_path": "xx",
+            "sate_lvl": "xx",
+            "map_path": "xx",
+            "map_change_lvl": "xx,18",
+            "pro_bord_path": "xx",
+            "user_id": xx,
+            "center_point": "xx"
+        }
+    },
+    "expires_in": xx
 }
 ```
 
 ##### 参数列表
 
-* 无
+* 与[login](#1)接口返回参数一致
+
 #### 请求失败
 
-* token值无效
-* id错误
+* 手机号码错误
+* 验证码错误
+* 没有请求过验证码
 
 ****
+
+## <div id = 38>38.counts</div>
+
+****
+
+### 简介
+
+* 对当前登录用户所属项目的用户、监测点和警报进行计数
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/counts
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/counts
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "user": 10,
+    "poi": 89,
+    "alarm": 0
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|user|用户数量|
+|poi|监测点数量|
+|alarm|警报数量|
+
+#### 请求失败
+
+* token值错误
+
+****
+
+## <div id = 39>39.user2</div>
+
+****
+
+### 简介
+
+* 根据登录用户的token值获取用户信息 ps:接口逻辑存在问题无法正常使用
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/user2
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/user2
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* 无
+
+****
+
+## <div id = 40>40.listUsers</div>
+
+****
+
+### 简介
+
+* 列出当前登录账户所属项目下的所有用户
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listUsers
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listUsers
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 20,
+        "email": "nx_admin",
+        "name": "nxadmin",
+        "phone": "13600004785",
+        "gender": 1,
+        "id_number": "430124999912315435",
+        "home": "湖南长沙宁乡",
+        "project_id": 12,
+        "type": 1,
+        "created_at": "2018-10-22 08:55:23",
+        "updated_at": "2018-10-22 08:55:24",
+        "pro_blo": null
+    },
+   ......
+]
+```
+
+##### 参数列表
+
+|参数|说明|
+
+* 与[login](#1)接口中返回参数一致
+
+#### 请求失败
+
+* token值错误
+* 当前登录用户不是管理员账户
+
+****
+
