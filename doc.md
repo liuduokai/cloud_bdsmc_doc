@@ -24,6 +24,12 @@
 22. [device](#22)
 23. [devicedata](#23)
 24. [history](#24)
+25. [UpdateSensor](#25)
+26. [listProjects](#26)
+27. [listAlarms]（#27）
+28. [countAlarms](#28)
+29. [updateAlarm](#29)
+30. [listRegs](#30)
 
 ****
 
@@ -1831,5 +1837,298 @@ cloud.bdsmc.net:8000/devicedata?id=xx&start=xx&end=xx
 * token值无效
 * 设备id出现问题
 * 用户不属于此设备属于的监测点项目或管理员
+
+****
+
+## <div id = 25>25.UpdateSensor</div>
+
+****
+
+### 简介
+
+* 更新设备的一二级预警的上下限值
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/UpdateSensor
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|传感器id|
+|up1|否|一级预警上限|
+|up2|否|二级预警上限|
+|down1|否|一级预警下限|
+|down2|否|二级预警下限|
+#### 请求示例
+
+cloud.bdsmc.net:8000/devicedata?id=xx&up1=xx&down1=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "update_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传感器id出现问题
+* 上下限值类型出现错误
+
+****
+
+## <div id = 26>26.listProjects</div>
+
+****
+
+### 简介
+
+* 返回当前所有的项目
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listProjects
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listProjects
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 2,
+        "name": "湖南移动天线监测项目",
+        "type": 1,
+        "created_at": "-0001-11-30 00:00:00",
+        "updated_at": "2018-01-08 13:22:14",
+        "lt_point": "",
+        "rd_point": "",
+        "sate_path": "",
+        "sate_lvl": "",
+        "map_path": "",
+        "map_change_lvl": "",
+        "pro_bord_path": "",
+        "user_id": null,
+        "center_point": null
+    },
+    ......
+]
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|项目id|
+|name|项目名称|
+|type|项目类型|
+|created_at/updated_at|增/改时间|
+|lt_point|项目地图左上极点|
+|rd_point|项目地图右下极点|
+|sate_path|卫星地图路径|
+|sate_lvl|卫星地图层级|
+|map_path|地图路径|
+|map_change_lvl|地图改变最大层级|
+|pro_bord_path|边界文件路径|
+|user_id|项目管理用户id|
+|center_point|地图中心点|
+
+
+#### 请求失败
+
+* token值无效
+
+****
+
+## <div id = 27>27.listAlarms</div>
+
+****
+
+### 简介
+
+* 接口实现文件已被注释
+
+### 请求
+
+#### 请求地址
+
+* 无
+
+#### 请求方式
+
+* 无
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+* 无
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+*无
+
+#### 请求失败
+
+* 无
+
+****
+
+## <div id = 28>28.countAlarms</div>
+
+****
+
+### 简介
+
+* 返回alarms表中所有state未0的消息计数
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/countAlarms
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/countAlarms
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "cnt": 0
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|cnt|满足条件的alarms计数
+
+
+#### 请求失败
+
+* token值无效
+
+****
+
+## <div id = 29>29.updateAlarm</div>
+
+****
+
+### 简介
+
+* 将相应警报的state更改为1
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateAlarm
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|$id|是|需要更新的警报的id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateAlarm/xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "update_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
 
 ****
