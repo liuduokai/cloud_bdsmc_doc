@@ -40,6 +40,10 @@
 38. [counts](#38)
 39. [user2](#39)
 40. [listUsers](#40)
+41. [addUser](#41)
+42. [addUserList](#42)
+43. [updateUser](#43)
+44. [delUser](#44)
 
 ****
 
@@ -2983,3 +2987,252 @@ cloud.bdsmc.net:8000/listUsers
 
 ****
 
+## <div id = 41>41.addUser</div>
+
+****
+
+### 简介
+
+* 添加新用户
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addUser
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|是|姓名|
+|email|是|邮箱|
+|password|是|密码|
+|project_id|是|所属项目|
+|phone|是|手机|
+|home|否|住址|
+|type|否|类型|
+|id_number|否|身份证号|
+|gender|否|性别|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addUser?email=xxx&password=xxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "name": "qwerqweq",
+    "email": "qwerrewq@qwer.com",
+    "project_id": "2",
+    "phone": "11111111111",
+    "updated_at": "2018-10-23 14:07:58",
+    "created_at": "2018-10-23 14:07:58",
+    "id": 390
+}
+```
+
+##### 参数列表
+
+* 参数与[login](#1)接口中同名参数一致
+  
+#### 请求失败
+
+* token值错误
+* 部分不允许重复的信息出现重复
+
+****
+
+## <div id = 42>42.addUserList</div>
+
+****
+
+### 简介
+
+* 通过文件批量添加新用户
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addUserList
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|file|包含用户信息的文件|
+##### 文件中所需数据格式
+* 文件从第二行开始读取数据，第一行为表头
+
+|列数|参数名|是否必须|说明|
+|:-:|:-:|:-:|:-:|
+|1|email|是|邮箱/用户名|
+|2|password|是|密码|
+|3|name|是|姓名|
+|4|gender|否|性别|
+|5|phone|是|手机|
+|6|id_number|否|身份证号|
+|7|home|否|住址|
+|8|project_id|否|所属项目id|
+#### 请求示例
+
+cloud.bdsmc.net:8000/addUserList
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "add_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* 文件中的信息出现错误
+
+****
+
+## <div id = 43>43.updateUser</div>
+
+****
+
+### 简介
+
+* 更新用户信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateUser
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|用户id|
+|email|是|用户名/邮箱|
+|name|是|姓名|
+|phone|是|手机号码|
+|gender|否|性别|
+|type|否|类型|
+|password|否|密码|
+|home|否|住址|
+|id_number|否|身份证号|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateUser
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "update_ok"
+}
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 输入了错误的参数
+  
+****
+
+## <div id = 44>44.delUser</div>
+
+****
+
+### 简介
+
+* 将相应的用户删除
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delUser
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|用户id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delUser?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+1
+```
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 用户id错误
+  
+****
