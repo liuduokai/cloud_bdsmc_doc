@@ -26,10 +26,17 @@
 24. [history](#24)
 25. [UpdateSensor](#25)
 26. [listProjects](#26)
-27. [listAlarms]（#27）
+27. [listAlarms](#27)
 28. [countAlarms](#28)
 29. [updateAlarm](#29)
 30. [listRegs](#30)
+31. [listMaintenances](#31)
+32. [addMaintenance](#32)
+33. [handleDeviceAlarm](#33)
+34. [handleSensorAlarm](#34)
+35. [handleCameraAlarm](#35)
+36. [getPWD](#36)
+37. [login2](#37)
 
 ****
 
@@ -2130,5 +2137,642 @@ cloud.bdsmc.net:8000/updateAlarm/xx
 #### 请求失败
 
 * token值无效
+
+****
+
+## <div id = 30>30.listRegs</div>
+
+****
+
+### 简介
+
+* 返回registrations表中相应的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listRegs
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|否|若存在id参数，则返回所有device_id==id的内容（包含user表中信息），否则返回表中所有内容（包含device表中相关信息）
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listRegs?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 1,
+        "user_id": 373,
+        "device_id": 230,
+        "time": "2018-10-23 09:19:10",
+        "created_at": "2018-10-23 09:19:10",
+        "updated_at": "2018-10-23 09:19:10",
+        "device": {
+            "id": 230,
+            "id2": 844424930590720,
+            "mac": "000300000007",
+            "poi_id": 184,
+            "latflag": 0,
+            "lat": 23.306252,
+            "lngflag": 0,
+            "lng": 116.241909,
+            "altitude": 20.384900000000002,
+            "init": 1,
+            "name": "一体化位移监测站(流动站)",
+            "type": 5,
+            "dimension": "",
+            "unit": "",
+            "color": "",
+            "online": 0,
+            "created_at": "2018-08-10 08:35:25",
+            "updated_at": "2018-08-28 09:30:00",
+            "report_cycle": null,
+            "communication_way": null,
+            "version_number": null,
+            "company_name_header": null
+        }
+    }
+]
+
+[
+    {
+        "id": 1,
+        "user_id": 373,
+        "device_id": 230,
+        "time": "2018-10-23 09:19:10",
+        "created_at": "2018-10-23 09:19:10",
+        "updated_at": "2018-10-23 09:19:10",
+        "user": {
+            "id": 373,
+            "email": "ltest",
+            "name": "lxusj",
+            "phone": "17782565539",
+            "gender": 1,
+            "id_number": "",
+            "home": "",
+            "project_id": 12,
+            "type": 0,
+            "created_at": "2018-10-22 09:49:49",
+            "updated_at": "2018-07-26 16:30:08",
+            "pro_blo": null
+        }
+    }
+]
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|表中数据的编号|
+|user_id|用户id|
+|device_id|设备id|
+|time|时间|
+|created_at/updated_at|增/改时间|
+|user|用户信息|
+|device|设备信息|
+
+
+#### 请求失败
+
+* token值无效
+* id值为不存在的设备
+
+****
+
+## <div id = 31>31.listMaintenances</div>
+
+****
+
+### 简介
+
+* 返回maintenance表中相应的信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listMaintenances
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|否|若存在id参数，则返回所有device_id==id的内容（包含user表中信息），否则返回表中所有内容（包含device表中相关信息）
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listMaintenances?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 1,
+        "content": "测试",
+        "user_id": 20,
+        "device_id": 230,
+        "time": "2018-05-28 09:24:40",
+        "created_at": "2018-05-28 09:24:40",
+        "updated_at": "2018-05-28 09:24:40",
+        "user": {
+            "id": 20,
+            "email": "nx_admin",
+            "name": "nxadmin",
+            "phone": "13600004785",
+            "gender": 1,
+            "id_number": "430124999912315435",
+            "home": "湖南长沙宁乡",
+            "project_id": 12,
+            "type": 1,
+            "created_at": "2018-10-22 08:55:23",
+            "updated_at": "2018-10-22 08:55:24",
+            "pro_blo": null
+        }
+    }
+]
+
+[
+    {
+        "id": 1,
+        "content": "测试",
+        "user_id": 373,
+        "device_id": 230,
+        "time": "2018-05-28 09:24:40",
+        "created_at": "2018-05-28 09:24:40",
+        "updated_at": "2018-05-28 09:24:40",
+        "device": {
+            "id": 230,
+            "id2": 844424930590720,
+            "mac": "000300000007",
+            "poi_id": 184,
+            "latflag": 0,
+            "lat": 23.306252,
+            "lngflag": 0,
+            "lng": 116.241909,
+            "altitude": 20.384900000000002,
+            "init": 1,
+            "name": "一体化位移监测站(流动站)",
+            "type": 5,
+            "dimension": "",
+            "unit": "",
+            "color": "",
+            "online": 0,
+            "created_at": "2018-08-10 08:35:25",
+            "updated_at": "2018-08-28 09:30:00",
+            "report_cycle": null,
+            "communication_way": null,
+            "version_number": null,
+            "company_name_header": null
+        }
+    }
+]
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|表中数据的编号|
+|content|记录名称|
+|user_id|用户id|
+|device_id|设备id|
+|time|时间|
+|created_at/updated_at|增/改时间|
+|user|用户信息|
+|device|设备信息|
+
+
+#### 请求失败
+
+* token值无效
+* id值为不存在的设备
+
+****
+
+## <div id = 32>32.addMaintenance</div>
+
+****
+
+### 简介
+
+* 增加maintenance表中内容
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addMaintenance
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|content|是|数据说明|
+|$id|是|设备id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addMaintenance/xx?content=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 1,
+        "content": "测试",
+        "user_id": 20,
+        "device_id": 230,
+        "time": "2018-05-28 09:24:40",
+        "created_at": "2018-05-28 09:24:40",
+        "updated_at": "2018-05-28 09:24:40",
+        "user": {
+            "id": 20,
+            "email": "nx_admin",
+            "name": "nxadmin",
+            "phone": "13600004785",
+            "gender": 1,
+            "id_number": "430124999912315435",
+            "home": "湖南长沙宁乡",
+            "project_id": 12,
+            "type": 1,
+            "created_at": "2018-10-22 08:55:23",
+            "updated_at": "2018-10-22 08:55:24",
+            "pro_blo": null
+        }
+    }
+]
+
+```
+
+##### 参数列表
+
+* 返回参数表同[listMaintenances](#31)中参数列表
+
+#### 请求失败
+
+* token值无效
+* id值为不存在的设备
+
+****
+
+## <div id = 33>33.handleDeviceAlarm</div>
+
+****
+
+### 简介
+
+* 操作设备报警信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/handleDeviceAlarm
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|conclusion|是|报警处理结论|
+|id|是|报警信息id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/handleDeviceAlarm?id=xx&conclusion=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 64,
+    "content": "11:46:09 已掉线",
+    "type": 4,
+    "device_id": 230,
+    "state": 1,
+    "time": "2018-10-18 11:46:09",
+    "conclusion": "test",
+    "handleUser": "nxadmin",
+    "handleTime": "2018-10-23 09:10:19",
+    "created_at": "2018-10-18 11:46:09",
+    "updated_at": "2018-10-23 09:51:19"
+}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|报警信息id|
+|content|报警消息|
+|type|警报类型|
+|device_id|设备id|
+|state|状态|
+|time|时间|
+|conclusion|处理结论|
+|handleUser|处理用户|
+|handleTime|处理时间|
+|created_at/updated_at|增/改时间|
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 34>34.handleSensorAlarm</div>
+
+****
+
+### 简介
+
+* 操作传感器报警信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/handleSensorAlarm
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|conclusion|是|报警处理结论|
+|id|是|报警信息id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/handleSensorAlarm?id=xx&conclusion=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 64,
+    "content": "高程变化超过一级预警下限1次",
+    "type": 1,
+    "sensor_id": 1147,
+    "state": 1,
+    "time": "2018-09-28 23:14:25",
+    "conclusion": "test",
+    "handleUser": "nxadmin",
+    "handleTime": "2018-10-23 10:10:37",
+    "created_at": "2018-09-28 23:14:25",
+    "updated_at": "2018-10-23 10:03:37"
+}
+```
+
+##### 参数列表
+
+* 与[handleDeviceAlarm](#33)参数列表中内容基本相同
+|参数|说明|
+|:-:|:-:|
+|sensor_id|c传感器id|
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 35>35.handleCameraAlarm</div>
+
+****
+
+### 简介
+
+* 操作摄像机报警信息
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/handleCameraAlarm
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|conclusion|是|报警处理结论|
+|id|是|报警信息id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/handleCameraAlarm?id=xx&conclusion=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 64,
+    "content": "检测到入侵",
+    "type": 1,
+    "camera_id": 1147,
+    "state": 1,
+    "time": "2018-09-28 23:14:25",
+    "conclusion": "test",
+    "handleUser": "nxadmin",
+    "handleTime": "2018-10-23 10:10:37",
+    "created_at": "2018-09-28 23:14:25",
+    "updated_at": "2018-10-23 10:03:37"
+}
+```
+
+##### 参数列表
+
+* 与[handleDeviceAlarm](#33)参数列表中内容基本相同
+|参数|说明|
+|:-:|:-:|
+|camera_id|摄像机id|
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 36>36.getPWD</div>
+
+****
+
+### 简介
+
+* 生成短信验证码，并将相应验证码发送给相应的手机
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getPWD
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|phone|手机号码|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getPWD?phone=xxxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "send it"
+}
+```
+
+##### 参数列表
+
+* 无
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 37>37.login2</div>
+
+****
+
+### 简介
+
+* 生成短信验证码，并将相应验证码发送给相应的手机
+
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getPWD
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|phone|手机号码|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getPWD?phone=xxxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "send it"
+}
+```
+
+##### 参数列表
+
+* 无
+#### 请求失败
+
+* token值无效
+* id错误
 
 ****
