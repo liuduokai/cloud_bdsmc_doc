@@ -74,7 +74,9 @@
 72. [GaodeCoord](#72)
 73. [deviceAlarmsById](#73)
 74. [cameraAlarmsById](#74)
-75. 
+75. [alarmsSensor](#75)
+76. [alarmsDevice](#76)
+77. [alarmsCamera](#77)
 
 ****
 
@@ -4805,7 +4807,7 @@ cloud.bdsmc.net:8000/insarData
 
 #### 参数
 
-参数名|是否必填|说明|
+|参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |id|是|insar id|
 
@@ -4895,7 +4897,7 @@ cloud.bdsmc.net:8000/genImage
 
 #### 参数
 
-参数名|是否必填|说明|
+|参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |color|是|图片颜色|
 
@@ -4996,7 +4998,7 @@ cloud.bdsmc.net:8000/deviceAlarmsById
 
 #### 参数
 
-参数名|是否必填|说明|
+|参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |id|是|设备id|
 |pn|是|页码|
@@ -5065,7 +5067,7 @@ cloud.bdsmc.net:8000/cameraAlarmsById
 
 #### 参数
 
-参数名|是否必填|说明|
+|参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |id|是|摄像机id|
 |pn|是|页码|
@@ -5087,7 +5089,7 @@ cloud.bdsmc.net:8000/cameraAlarmsById?id=xx&ps=xx&pn=xx
 [
     {
         "id": 3,
-        "content": "10:23:45 已掉线",
+        "content": "检测到入侵",
         "type": 4,
         "device_id": 230,
         "state": 0,
@@ -5109,6 +5111,266 @@ cloud.bdsmc.net:8000/cameraAlarmsById?id=xx&ps=xx&pn=xx
 
 * token值错误
 * 请求id不存在
+* 请求页数超出数据范围
+  
+****
+
+## <div id = 75>75.alarmsSensor</div>
+
+****
+
+### 简介
+
+* 返回传感器报警信息
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
+* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/alarmsSensor
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|ps|是|页面大小|
+|pn|是|页码|
+|id2|否|设备id2|
+|id|否|设备id|
+|lvl|否|警报等级|
+|starttime|否|开始时间|
+|endtime|否|结束时间|
+|poiid|否|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/alarmsSensor?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "totalCount": 99,
+    "alarms": [
+        {
+            "id": 940,
+            "content": "偏北超过二级预警下限1次",
+            "type": 2,
+            "sensor_id": 940,
+            "state": 0,
+            "time": "2018-10-24 15:32:11",
+            "conclusion": null,
+            "handleUser": null,
+            "handleTime": null,
+            "created_at": "2018-10-24 15:32:11",
+            "updated_at": null,
+            "deleted_at": null,
+            "name": "GNSS-1",
+            "sensor_name": "偏北",
+            "poi_name": "津市古大同老果园滑坡滑坡",
+            "poi_location": "津市古大同老果园滑坡滑坡",
+            "up1": 300,
+            "down1": -300,
+            "up2": 80,
+            "down2": -80
+        },
+        ......
+    ]
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|totalCount|预警信息总数|
+|alarms|预警信息|
+#### 请求失败
+
+* token值错误
+* 请求过滤条件参数错误
+* 请求页数超出数据范围
+  
+****
+
+## <div id = 76>76.alarmsDevice</div>
+
+****
+
+### 简介
+
+* 返回设备报警信息
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
+* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/alarmsDevice
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|ps|是|页面大小|
+|pn|是|页码|
+|id2|否|设备id2|
+|id|否|设备id|
+|lvl|否|警报等级|
+|starttime|否|开始时间|
+|endtime|否|结束时间|
+|poiid|否|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/alarmsDevice?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "totalCount": 2,
+    "alarms": [
+        {
+            "id": 88,
+            "content": "12:05:00 已上线",
+            "type": 5,
+            "device_id": 570,
+            "state": 0,
+            "time": "2018-10-22 12:05:00",
+            "conclusion": null,
+            "handleUser": null,
+            "handleTime": null,
+            "created_at": "2018-10-22 12:05:00",
+            "updated_at": null,
+            "deleted_at": null,
+            "name": "GNSS-1",
+            "poi_name": "津市古大同老果园滑坡滑坡",
+            "poi_location": "津市古大同老果园滑坡滑坡"
+        },
+        ......
+    ]
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|totalCount|预警信息总数|
+|alarms|预警信息|
+#### 请求失败
+
+* token值错误
+* 请求过滤条件参数错误
+* 请求页数超出数据范围
+  
+****
+
+## <div id = 76>76.alarmsCamera</div>
+
+****
+
+### 简介
+
+* 返回摄像头报警信息
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
+* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/alarmsCamera
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|ps|是|页面大小|
+|pn|是|页码|
+|id2|否|摄像机id2|
+|id|否|摄像机id|
+|lvl|否|警报等级|
+|starttime|否|开始时间|
+|endtime|否|结束时间|
+|poiid|否|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/alarmsCamera?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "totalCount": 1,
+    "alarms": [
+        {
+            "id": 1,
+            "content": "21",
+            "type": 2,
+            "camera_id": 5,
+            "state": 0,
+            "time": "2018-10-24 17:08:43",
+            "conclusion": "1",
+            "handleUser": "1",
+            "handleTime": "2018-09-05 17:08:40",
+            "created_at": "2018-10-24 17:08:43",
+            "updated_at": null,
+            "deleted_at": null,
+            "name": "视频监控",
+            "poi_name": "澧县火连坡镇芦桥村4组滑坡",
+            "poi_location": "澧县火连坡镇芦桥村4组滑坡"
+        },
+        ......
+    ]
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|totalCount|预警信息总数|
+|alarms|预警信息|
+#### 请求失败
+
+* token值错误
+* 请求过滤条件参数错误
 * 请求页数超出数据范围
   
 ****
