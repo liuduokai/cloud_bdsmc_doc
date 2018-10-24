@@ -57,6 +57,10 @@
 55. [addPoi2](#55)
 56. [updatePoi2](#56)
 57. [delPoi2](#57)
+58. [listDevices2](#58)
+59. [addDevice2](#59)
+60. [updateDevice2](#60)
+61. [delDevice2](#61)
 
 ****
 
@@ -3987,7 +3991,239 @@ cloud.bdsmc.net:8000/updatePoi2?id=xx&id2=xx&name=xx
   
 ****
 
-## <div id = 57>57.delPoi2</div>
+## <div id = 57>57.listDevices2</div>
+
+****
+
+### 简介
+
+* 列出监测点下设备信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listDevices2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listDevices2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+[
+    {
+        "id": 570,
+        "id2": "844424931246080",
+        "mac": "000300000011",
+        "poi_id": 179,
+        "latflag": 0,
+        "lat": 29.616547,
+        "lngflag": 0,
+        "lng": 111.855236,
+        "altitude": 45.3971,
+        "init": 1,
+        "name": "GNSS-1",
+        "type": 0,
+        "dimension": "",
+        "unit": "",
+        "color": "",
+        "online": 1,
+        "created_at": "2018-08-24 18:03:08",
+        "updated_at": "2018-09-13 10:19:51",
+        "report_cycle": null,
+        "communication_way": null,
+        "version_number": null,
+        "company_name_header": null
+    },
+    ......
+]
+```
+##### 参数列表
+
+* 返回参数与接口[listDevices](#18)相同
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 58>58.delPoi2</div>
+
+****
+
+### 简介
+
+* 删除监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoi2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 59>59.delPoi2</div>
+
+****
+
+### 简介
+
+* 删除监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoi2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 60>60.delPoi2</div>
+
+****
+
+### 简介
+
+* 删除监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoi2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 61>61.delPoi2</div>
 
 ****
 
