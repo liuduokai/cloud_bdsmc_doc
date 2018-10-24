@@ -61,6 +61,9 @@
 59. [addDevice2](#59)
 60. [updateDevice2](#60)
 61. [delDevice2](#61)
+62. [listSensors2](#62)
+63. [addSensor2](#63)
+64. [updateSensor2](#64)
 
 ****
 
@@ -3991,7 +3994,59 @@ cloud.bdsmc.net:8000/updatePoi2?id=xx&id2=xx&name=xx
   
 ****
 
-## <div id = 57>57.listDevices2</div>
+## <div id = 57>57.delPoi2</div>
+
+****
+
+### 简介
+
+* 删除监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoi2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 58>58.listDevices2</div>
 
 ****
 
@@ -4063,23 +4118,23 @@ cloud.bdsmc.net:8000/listDevices2?id=xx
 #### 请求失败
 
 * token值无效
-* 传入其他参数错误
+* 监测点id错误
   
 ****
 
-## <div id = 58>58.delPoi2</div>
+## <div id = 59>59.addDevice2</div>
 
 ****
 
 ### 简介
 
-* 删除监测点
+* 增加设备
   
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/delPoi2
+cloud.bdsmc.net:8000/addDevice2
 
 #### 请求方式
 
@@ -4090,11 +4145,135 @@ cloud.bdsmc.net:8000/delPoi2
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|是|监测点id|
+|poi_id|是|监测点id|
+|name|是|设备名称|
+|id2|是|设备id2|
+|lng|否|经度|
+|lat|否|纬度|
+|altitude|否|高程|
+|dimension|否|面积|
+|unit|否|单位|
+|type|否|类型，若设备类型为5，会同时将数据插入到qianxun和gnss数据表中
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/delPoi2?id=xx
+cloud.bdsmc.net:8000/addDevice2?poi_id=xx&name=xx&id2=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "add_ok",
+    "id":1,
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|设备id|
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 60>60.updateDevice2</div>
+
+****
+
+### 简介
+
+* 更新设备信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateDevice2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备id|
+|poi_id|是|监测点id|
+|name|是|设备名称|
+|lng|否|经度|
+|lat|否|纬度|
+|altitude|否|高程|
+|dimension|否|面积|
+|unit|否|单位|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateDevice2?id=xx&poi_id=xx&name=xx&id2=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "update_ok",
+}
+```
+##### 参数列表
+
+|参数|说明|
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 设备id错误
+  
+****
+
+## <div id = 61>61.delDevice2</div>
+
+****
+
+### 简介
+
+* 删除设备信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delDevice2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delDevice2?id=xx
 
 ****
 
@@ -4110,28 +4289,30 @@ cloud.bdsmc.net:8000/delPoi2?id=xx
 ```
 ##### 参数列表
 
+|参数|说明|
+
 * 无
 
 #### 请求失败
 
 * token值无效
-* 传入其他参数错误
+* 设备id错误
   
 ****
 
-## <div id = 59>59.delPoi2</div>
+## <div id = 62>62.listSensors2</div>
 
 ****
 
 ### 简介
 
-* 删除监测点
+* 返回设备中所有传感器的参数
   
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/delPoi2
+cloud.bdsmc.net:8000/listSensors2
 
 #### 请求方式
 
@@ -4142,11 +4323,11 @@ cloud.bdsmc.net:8000/delPoi2
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|是|监测点id|
+|id|是|设备id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/delPoi2?id=xx
+cloud.bdsmc.net:8000/listSensors2?id=xx
 
 ****
 
@@ -4156,34 +4337,58 @@ cloud.bdsmc.net:8000/delPoi2?id=xx
 
 ##### 返回示例
 ```json
-{
-    "message": "del_ok",
-}
+[
+    {
+        "id": 176,
+        "id2": "848844552339526",
+        "device_id": 179,
+        "lng": 0,
+        "lat": 0,
+        "name": "经度",
+        "type": 0,
+        "dimension": "",
+        "unit": "度",
+        "min": -100,
+        "max": 100,
+        "up1": 100000,
+        "down1": -10000,
+        "up2": 100000,
+        "down2": -10000,
+        "value": 10,
+        "color": "",
+        "created_at": "2018-07-16 17:30:09",
+        "updated_at": "2018-07-16 17:30:09",
+        "seq": null
+    },
+    ......
+]
 ```
 ##### 参数列表
 
 * 无
 
+* 与接口[listSensors](#20)返回参数一致
+
 #### 请求失败
 
 * token值无效
-* 传入其他参数错误
+* 设备id错误
   
 ****
 
-## <div id = 60>60.delPoi2</div>
+## <div id = 63>63.addSensor2</div>
 
 ****
 
 ### 简介
 
-* 删除监测点
+* 增加传感器
   
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/delPoi2
+cloud.bdsmc.net:8000/addSensor2
 
 #### 请求方式
 
@@ -4194,11 +4399,19 @@ cloud.bdsmc.net:8000/delPoi2
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|是|监测点id|
+|device_id|是|设备id|
+|name|是|传感器名称|
+|id2|是|传感器id2|
+|up1|否|一级预警上限|
+|up2|否|二级预警上限|
+|down1|否|一级预警下限|
+|down2|否|二级预警下限|
+|unit|否|单位|
+|value|否|数值|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/delPoi2?id=xx
+cloud.bdsmc.net:8000/addSensor2?id=xx
 
 ****
 
@@ -4209,33 +4422,32 @@ cloud.bdsmc.net:8000/delPoi2?id=xx
 ##### 返回示例
 ```json
 {
-    "message": "del_ok",
+    "message": "add_ok",
 }
 ```
 ##### 参数列表
 
-* 无
+* 与接口[listSensors](#20)返回参数一致
 
 #### 请求失败
 
 * token值无效
-* 传入其他参数错误
-  
+    
 ****
 
-## <div id = 61>61.delPoi2</div>
+## <div id = 64>64.updateSensor2</div>
 
 ****
 
 ### 简介
 
-* 删除监测点
+* 更新传感器信息
   
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/delPoi2
+cloud.bdsmc.net:8000/updateSensor2
 
 #### 请求方式
 
@@ -4246,11 +4458,20 @@ cloud.bdsmc.net:8000/delPoi2
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|id|是|监测点id|
+|id|是|传感器id|
+|device_id|否|设备id|
+|name|否|传感器名称|
+|id2|否|传感器id2|
+|up1|否|一级预警上限|
+|up2|否|二级预警上限|
+|down1|否|一级预警下限|
+|down2|否|二级预警下限|
+|unit|否|单位|
+|value|否|数值|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/delPoi2?id=xx
+cloud.bdsmc.net:8000/updateSensor2?id=xx&name=xx
 
 ****
 
@@ -4261,7 +4482,7 @@ cloud.bdsmc.net:8000/delPoi2?id=xx
 ##### 返回示例
 ```json
 {
-    "message": "del_ok",
+    "message": "update_ok",
 }
 ```
 ##### 参数列表
@@ -4271,6 +4492,6 @@ cloud.bdsmc.net:8000/delPoi2?id=xx
 #### 请求失败
 
 * token值无效
-* 传入其他参数错误
+* 传感器id错误
   
 ****
