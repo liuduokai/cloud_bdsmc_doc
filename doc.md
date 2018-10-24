@@ -65,6 +65,11 @@
 63. [addSensor2](#63)
 64. [updateSensor2](#64)
 65. [delSensor2](#65)
+66. [videosource](#66)
+67. [videoList](#67)
+68. [videoHistory](#68)
+69. [insar](#69)
+70. [insarData](#70)
 
 ****
 
@@ -175,7 +180,7 @@ cloud.bdsmc.net:8000/login?email=xx&password=xx
 
 ****
 
-## <div i = 2>2.logout</div>
+## <div id = 2>2.logout</div>
 
 ****
 
@@ -4547,4 +4552,293 @@ cloud.bdsmc.net:8000/delSensor2?id=xx
 * token值无效
 * 传感器id错误
   
+****
+
+
+
+## <div id = 66>66.videosource</div>
+
+****
+
+### 简介
+
+* 根据摄像头pid请求视频播放地址(接口未使用，设备不在线，请求只会返回失败信息)
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/videosource
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|puid|是|摄像头puid|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/videosource?puid=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* 因设备无法长时间在线，请求必定返回失败值
+
+****
+
+## <div id = 67>67.videoList</div>
+
+****
+
+### 简介
+
+* 返回视频设备列表
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/videoList
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|page|是|页码|
+|rows|是|行数|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/videoList?page=xx&rows=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{"code":0,"msg":"success","total":"4","rows":[]}
+```
+
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|code|状态码|
+|msg|状态消息|
+|total|设备总数|
+|rows|设备信息|
+
+#### 请求失败
+
+* token值无效
+* 行列信息无效
+
+****
+
+## <div id = 68>68.videoHistory</div>
+
+****
+
+### 简介
+
+* 返回摄像头设备的历史数据（接口已弃用，因为摄像头并无常在线，也没有返回监控数据所以请求必定返回失败值）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/videoHistory
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|puid|是|页码|
+|begin|是|开始时间|
+|end|是结束时间|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/videoHistory?puid=xx&begin=xx&end=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* 请求必定失败
+****
+
+## <div id = 69>69.insar</div>
+
+****
+
+### 简介
+
+* 查看insar数据，当有用户type==3时仅返回mean_velocity<-20的值
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/insar
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+*无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/insar
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    "color": "FFFF0000",
+            "insars": [
+                {
+                    "id": 4855,
+                    "latitude": "28.251137",
+                    "longitude": "112.414267",
+                    "lng_g": "112.419992675782",
+                    "lat_g": "28.247960069445",
+                    "mean_velocity": -21.14
+                },
+                ......
+            ]
+]
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|color|颜色|
+|insars|insars数据|
+
+#### 请求失败
+
+* token值错误
+* 项目中没有insar信息
+
+****
+
+## <div id = 69>69.insar</div>
+
+****
+
+### 简介
+
+* 查看insar数据，当有用户type==3时仅返回mean_velocity<-20的值
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/insar
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+*无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/insar
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    "color": "FFFF0000",
+            "insars": [
+                {
+                    "id": 4855,
+                    "latitude": "28.251137",
+                    "longitude": "112.414267",
+                    "lng_g": "112.419992675782",
+                    "lat_g": "28.247960069445",
+                    "mean_velocity": -21.14
+                },
+                ......
+            ]
+]
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|color|颜色|
+|insars|insars数据|
+
+#### 请求失败
+
+* token值错误
+* 项目中没有insar信息
+
 ****
