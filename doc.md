@@ -70,6 +70,11 @@
 68. [videoHistory](#68)
 69. [insar](#69)
 70. [insarData](#70)
+71. [genImage](#71)
+72. [GaodeCoord](#72)
+73. [deviceAlarmsById](#73)
+74. [cameraAlarmsById](#74)
+75. 
 
 ****
 
@@ -4426,6 +4431,7 @@ cloud.bdsmc.net:8000/addSensor2?id=xx
 #### 请求成功
 
 ##### 返回示例
+
 ```json
 {
     "message": "add_ok",
@@ -4778,19 +4784,19 @@ cloud.bdsmc.net:8000/insar
 
 ****
 
-## <div id = 69>69.insar</div>
+## <div id = 70>70.insarData</div>
 
 ****
 
 ### 简介
 
-* 查看insar数据，当有用户type==3时仅返回mean_velocity<-20的值
+* 获取insar数据
   
 ### 请求
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/insar
+cloud.bdsmc.net:8000/insarData
 
 #### 请求方式
 
@@ -4799,11 +4805,206 @@ cloud.bdsmc.net:8000/insar
 
 #### 参数
 
-*无
+参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|insar id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/insar
+cloud.bdsmc.net:8000/insarData?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": 1,
+    "latitude": "28.363493",
+    "longitude": "112.638301",
+    "lng_g": "112.643679470487",
+    "lat_g": "28.359995659723",
+    "color": "FF61FFDA",
+    "range": 2404,
+    "azimuth": 14,
+    "point_height": 51.67,
+    "mean_velocity": 2.87,
+    "height_correction": 5.88,
+    "coherence": 0.91,
+    "musigma": 4.91,
+    "h_precision": 6.13,
+    "v_precision": 1.91,
+    "data": [
+        {
+            "id": 1,
+            "insar_id": 1,
+            "time": 1496505600,
+            "value": "0.00"
+        },
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|insar id|
+|latitude|经度|
+|longitude|纬度|
+|lng_g|另一种精度的纬度|
+|lat_g|另一种精度的经度|
+|color|颜色|
+|range|范围|
+|azimuth||
+|point_height||
+|mean_velocity||
+|height_correction||
+|coherence||
+|musigma||
+|h_precision||
+|v_precision||
+|data|insars数据|
+
+#### 请求失败
+
+* token值错误
+* insar id错误
+
+****
+
+## <div id = 71>71.genImage</div>
+
+****
+
+### 简介
+
+* 获取指定颜色的图片
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/genImage
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|color|是|图片颜色|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/genImage?color=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 返回值为一张12 *12的相应颜色图片
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+****
+
+## <div id = 72>72.GaodeCoord</div>
+
+****
+
+### 简介
+
+* 更新insar相关信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/GaodeCoord
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|insar id|
+|lng_g|是|纬度|
+|lat_g|是|经度|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/GaodeCoord?id=xx&lng_g=xx&lat_g=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "msg": "ok",
+}  
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+****
+
+## <div id = 73>73.deviceAlarmsById</div>
+
+****
+
+### 简介
+
+* 根据设备id查询报警信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/deviceAlarmsById
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备id|
+|pn|是|页码|
+|ps|是|页大小|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/deviceAlarmsById?id=xx&ps=xx&pn=xx
 
 ****
 
@@ -4815,30 +5016,99 @@ cloud.bdsmc.net:8000/insar
 
 ```json
 [
-    "color": "FFFF0000",
-            "insars": [
-                {
-                    "id": 4855,
-                    "latitude": "28.251137",
-                    "longitude": "112.414267",
-                    "lng_g": "112.419992675782",
-                    "lat_g": "28.247960069445",
-                    "mean_velocity": -21.14
-                },
-                ......
-            ]
+    {
+        "id": 3,
+        "content": "10:23:45 已掉线",
+        "type": 4,
+        "device_id": 230,
+        "state": 0,
+        "time": "2018-10-16 10:23:45",
+        "conclusion": null,
+        "handleUser": null,
+        "handleTime": null,
+        "created_at": "2018-10-16 10:23:45",
+        "updated_at": null
+    },
+    ......
 ]
 ```
 ##### 参数列表
 
-|参数|说明|
-|:-:|:-:|
-|color|颜色|
-|insars|insars数据|
+* 与[handleDeviceAlarm](#33)接口中返回的参数一致
 
 #### 请求失败
 
 * token值错误
-* 项目中没有insar信息
+* 请求id不存在
+* 请求页数超出数据范围
+  
+****
 
+## <div id = 74>74.cameraAlarmsById</div>
+
+****
+
+### 简介
+
+* 根据摄像机id查询报警信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/cameraAlarmsById
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|摄像机id|
+|pn|是|页码|
+|ps|是|页大小|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/cameraAlarmsById?id=xx&ps=xx&pn=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 3,
+        "content": "10:23:45 已掉线",
+        "type": 4,
+        "device_id": 230,
+        "state": 0,
+        "time": "2018-10-16 10:23:45",
+        "conclusion": null,
+        "handleUser": null,
+        "handleTime": null,
+        "created_at": "2018-10-16 10:23:45",
+        "updated_at": null
+    },
+    ......
+]
+```
+##### 参数列表
+
+* 与[handleDeviceAlarm](#33)接口中返回的参数一致
+
+#### 请求失败
+
+* token值错误
+* 请求id不存在
+* 请求页数超出数据范围
+  
 ****
