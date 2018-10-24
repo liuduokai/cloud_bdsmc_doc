@@ -50,6 +50,13 @@
 48. [updateProject2](#48)
 49. [delProject2](#49)
 50. [listUsers2](#50)
+51. [addUser2](#51)
+52. [updateUser2](#52)
+53. [delUser2](#53)
+54. [listPois2](#54)
+55. [addPoi2](#55)
+56. [updatePoi2](#56)
+57. [delPoi2](#57)
 
 ****
 
@@ -3610,3 +3617,424 @@ cloud.bdsmc.net:8000/delProject2?id=xx
   
 ****
 
+## <div id = 51>51.addUser2</div>
+
+****
+
+### 简介
+
+* 添加新用户
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addUser2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|否|姓名|
+|email|否|邮箱/用户名|
+|password|否|密码|
+|project_id|否|所属项目id|
+|phone|否|手机|
+|home|否|住址|
+|type|否|类型|
+|id_number|否|身份证号码|
+|gender|否|性别|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addUser2?name=xx&email=xx&password=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "add_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入参数与已有账户重复
+  
+****
+
+## <div id = 52>52.updateUser2</div>
+
+****
+
+### 简介
+
+* 更新用户信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateUser2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|否|姓名|
+|email|否|邮箱/用户名|
+|password|否|密码|
+|project_id|否|所属项目id|
+|phone|否|手机|
+|home|否|住址|
+|type|否|类型|
+|id_number|否|身份证号码|
+|gender|否|性别|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateUser2?name=xx&email=xx&password=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "update_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入参数与已有账户重复
+  
+****
+
+## <div id = 53>53.delUser2</div>
+
+****
+
+### 简介
+
+* 删除用户
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delUser2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|用户id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delUser2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+1
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入id有误
+  
+****
+
+## <div id = 54>54.listPois2</div>
+
+****
+
+### 简介
+
+* 返回项目中所有的监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/listPois2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|项目id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/listPois2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+[
+    {
+        "id": 86,
+        "id2": 0,
+        "project_id": 12,
+        "user_id": 133,
+        "lngflag": 0,
+        "lng": 112.612778,
+        "latflag": 0,
+        "lat": 28.120278,
+        "altitude": 0,
+        "init": 0,
+        "name": "nx22",
+        "location": "东湖塘镇西冲山村上马组（滑坡）",
+        "props": "",
+        "created_at": "2018-09-13 11:51:02",
+        "updated_at": "2018-09-13 11:51:02",
+        "photos": [
+            {
+                "id": 74,
+                "poi_id": 86,
+                "path": null,
+                "created_at": "2018-09-17 09:34:56",
+                "updated_at": "2018-09-17 09:34:56",
+                "info_path": "file/5b9f04c0d90d2_dcq_htd_xujiazui.jpg",
+                "devices": [],
+                "photopostions": []
+            }
+        ]
+    },
+    ......
+]
+```
+##### 参数列表
+
+* 与接口[listPois](#10)参数一致
+
+#### 请求失败
+
+* token值无效
+* 项目id错误
+  
+****
+
+## <div id = 55>55.addPoi2</div>
+
+****
+
+### 简介
+
+* 添加监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|是|监测点名称|
+|location|是|监测点位置|
+|project_id|是|监测点所属项目id|
+|id2|是|监测点id2|
+|user_id|否|管理用户id|
+|lng|否|经度|
+|lat|否|纬度|
+|altitude|否|高程|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addPoi2?name=xx&location=xx&projet_id=xx&id2=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "add_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 56>56.updatePoi2</div>
+
+****
+
+### 简介
+
+* 更新监测点信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updatePoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+|name|否|监测点名称|
+|location|否|监测点位置|
+|project_id|否|监测点所属项目id|
+|id2|否|监测点id2|
+|user_id|否|管理用户id|
+|lng|否|经度|
+|lat|否|纬度|
+|altitude|否|高程|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updatePoi2?id=xx&id2=xx&name=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "update_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
+
+## <div id = 57>57.delPoi2</div>
+
+****
+
+### 简介
+
+* 删除监测点
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoi2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoi2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传入其他参数错误
+  
+****
