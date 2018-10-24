@@ -77,6 +77,7 @@
 75. [alarmsSensor](#75)
 76. [alarmsDevice](#76)
 77. [alarmsCamera](#77)
+78. [UsersLog](#78)
 
 ****
 
@@ -5290,7 +5291,7 @@ cloud.bdsmc.net:8000/alarmsDevice?id=xx
   
 ****
 
-## <div id = 76>76.alarmsCamera</div>
+## <div id = 77>77.alarmsCamera</div>
 
 ****
 
@@ -5373,4 +5374,75 @@ cloud.bdsmc.net:8000/alarmsCamera?id=xx
 * 请求过滤条件参数错误
 * 请求页数超出数据范围
   
+****
+
+## <div id = 78>78.UsersLog</div>
+
+****
+
+### 简介
+
+* 返回用户操作日志
+* 仅有管理员可以使用此接口
+* 仅会记录对数据库改动的操作
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/UsersLog
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/UsersLog
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 12,
+        "user_id": 1,
+        "content": "addUser",
+        "time": "2018-07-26 15:10:03",
+        "type": 1,
+        "created_at": "2018-07-26 15:10:03",
+        "updated_at": "2018-07-26 15:10:03",
+        "deleted_at": null,
+        "name": "YM"
+    },
+    ......
+]
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:|
+|id|记录id|
+|user_id|操作用户id|
+|content|操作内容|
+|time|操作日志|
+|type|操作类型 type 1=add 2=del   3=upd|
+|created_at/updated_at/deleted_at|增删改时间|
+|name|操作用户姓名|
+#### 请求失败
+
+* token值错误
+* 用户没管理员权限
+
 ****
