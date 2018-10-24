@@ -46,6 +46,10 @@
 44. [delUser](#44)
 45. [addProjectFile2](#45)
 46. [listProjects2](#46)
+47. [addProject2](#47)
+48. [updateProject2](#48)
+
+
 
 ****
 
@@ -3290,13 +3294,13 @@ cloud.bdsmc.net:8000/addProjectFile2
   
 ****
 
-## <div id = 46>45.listProjects2</div>
+## <div id = 46>46.listProjects2</div>
 
 ****
 
 ### 简介
 
-* 返回项目相关信息
+* 返回用户所负责的项目列表/所有项目（管理员账户）
   
 ### 请求
 
@@ -3325,16 +3329,177 @@ cloud.bdsmc.net:8000/listProjects2
 #### 请求成功
 
 ##### 返回示例
-
-* 无
-
+```json
+ [
+    {
+        "id": 2,
+        "name": "湖南移动天线监测项目",
+        "type": 1,
+        "created_at": "-0001-11-30 00:00:00",
+        "updated_at": "2018-01-08 13:22:14",
+        "lt_point": "",
+        "rd_point": "",
+        "sate_path": "",
+        "sate_lvl": "",
+        "map_path": "",
+        "map_change_lvl": "",
+        "pro_bord_path": "",
+        "user_id": null,
+        "center_point": null
+    },
+    ......
+]
+```
 ##### 参数列表
 
-* 无
+* 参数列表与[listProjects](#26)接口返回参数一致
 
 #### 请求失败
 
 * token值无效
-* 文件错误
+  
+****
+
+## <div id = 47>47.addProject2</div>
+
+****
+
+### 简介
+
+* 增加项目
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addProject2
+
+#### 请求方式
+
+* get
+* options
+* post
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|是|项目名称|
+|lt_point|是|左上极点|
+|rd_point|是|右下极点|
+|center_point|是|地图中心点|
+|sate_path|是|卫星地图路径|
+|map_path|是|地图路径|
+|map_change_lvl|是|地图改变级别|
+|user_id|否|负责用户id|
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addProject2?name=xx&......
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "add_ok",
+    "project": {
+        "name": "测试测试测试",
+        "lt_point": "12",
+        "rd_point": "34",
+        "center_point": "123",
+        "sate_path": "123",
+        "map_path": "123",
+        "map_change_lvl": "123",
+        "updated_at": "2018-10-23 15:40:06",
+        "created_at": "2018-10-23 15:40:06",
+        "id": 63
+    }
+}
+```
+##### 参数列表
+
+* 参数列表与[listProjects](#26)接口返回项目信息参数一致
+
+#### 请求失败
+
+* token值无效
+  
+****
+
+## <div id = 48>48.updateProject2</div>
+
+****
+
+### 简介
+
+* 更新项目
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateProject2
+
+#### 请求方式
+
+* get
+* options
+* post
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|name|是|项目名称|
+|lt_point|是|左上极点|
+|rd_point|是|右下极点|
+|center_point|是|地图中心点|
+|sate_path|是|卫星地图路径|
+|map_path|是|地图路径|
+|map_change_lvl|是|地图改变级别|
+|user_id|否|负责用户id|
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateProject2?name=xx&......
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "add_ok",
+    "project": {
+        "name": "测试测试测试",
+        "lt_point": "12",
+        "rd_point": "34",
+        "center_point": "123",
+        "sate_path": "123",
+        "map_path": "123",
+        "map_change_lvl": "123",
+        "updated_at": "2018-10-23 15:40:06",
+        "created_at": "2018-10-23 15:40:06",
+        "id": 63
+    }
+}
+```
+##### 参数列表
+
+* 参数列表与[listProjects](#26)接口返回项目信息参数一致
+
+#### 请求失败
+
+* token值无效
   
 ****
