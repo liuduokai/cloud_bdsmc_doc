@@ -64,6 +64,7 @@
 62. [listSensors2](#62)
 63. [addSensor2](#63)
 64. [updateSensor2](#64)
+65. [delSensor2](#65)
 
 ****
 
@@ -4483,6 +4484,58 @@ cloud.bdsmc.net:8000/updateSensor2?id=xx&name=xx
 ```json
 {
     "message": "update_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 传感器id错误
+  
+****
+
+## <div id = 65>65.delSensor2</div>
+
+****
+
+### 简介
+
+* 删除传感器
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delSensor2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|传感器id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delSensor2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
 }
 ```
 ##### 参数列表
