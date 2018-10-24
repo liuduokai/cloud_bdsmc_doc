@@ -48,8 +48,8 @@
 46. [listProjects2](#46)
 47. [addProject2](#47)
 48. [updateProject2](#48)
-
-
+49. [delProject2](#49)
+50. [listUsers2](#50)
 
 ****
 
@@ -3503,3 +3503,110 @@ cloud.bdsmc.net:8000/updateProject2?name=xx&......
 * token值无效
   
 ****
+
+## <div id = 49>49.delProject2</div>
+
+****
+
+### 简介
+
+* 更新项目
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delProject2
+
+#### 请求方式
+
+* get
+* options
+* post
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|项目id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delProject2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id值不是有效的id值
+  
+****
+
+## <div id = 50>50.listUsers2</div>
+
+****
+
+### 简介
+
+* 返回项目中的所有用户
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delProject2
+
+#### 请求方式
+
+* get
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|否|项目id，若有此参数则返回项目中所有用户，若没有此参数且用户为管理员，返回所有用户信息|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delProject2?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id值不是有效的id值
+* 没有传递id参数且登录账户不是管理员账户
+  
+****
+
