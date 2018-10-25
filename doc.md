@@ -90,7 +90,17 @@
 87. [getMapInfo](#87)
 88. [resetPwd](#88)
 89. [getVideopic](#89)
-
+90. [getVideoPicByDate](#90)
+91. [addCameras](#91)
+92. [updateCameras](#92)
+93. [delCameras](#93)
+94. [getCameras](#94)
+95. [addQianXun](#95)
+96. [delQianXun](#96)
+97. [updateQianXun](#97)
+98. [getQianXun](#98)
+99. [acceptNBData](#99)
+100. [test](#100)
 
 ****
 
@@ -6076,6 +6086,9 @@ cloud.bdsmc.net:8000/getMapInfo
 |minZoom|最小缩放|
 |vt|地图路径|
 |vp|地图路径|
+|border|边界文件|
+|zom|缩放|
+
 #### 请求失败
 
 * 当前用户不属于任何项目
@@ -6196,5 +6209,618 @@ cloud.bdsmc.net:8000/getVideopic
 * token值无效
   
 ****
+
+## <div id = 90>90.getVideoPicByDate</div>
+
+****
+
+### 简介
+
+* 返回请求日期的图片数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getVideoPicByDate
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|id|是|摄像头id|
+|date|是|日期|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getVideoPicByDate?id=xx&date=xxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008150536_078C.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008150656_078E.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008150736_0790.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008150746_0792.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008170909_0798.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008180809_079B.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008190545_079E.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008200542_07A1.jpg",
+    "/VideoData/SNAPSHOT/201115202031224463/00/20181008/20181008230851_07A8.jpg"
+]
+```
+##### 参数列表
+
+* 图片路径
+
+#### 请求失败
+
+* token值无效
+* 摄像头id错误或当日没有数据
+
+****
+
+## <div id = 91>91.addCameras</div>
+
+****
+
+### 简介
+
+* 增加摄像机数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addCameras
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|uid|是|摄像头uid|
+|poi_id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addCameras?uid=xx&poi_id=xxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "添加成功",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 监测点id错误
+
+****
+
+## <div id = 92>92.updateCameras</div>
+
+****
+
+### 简介
+
+* 更新摄像机数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateCameras
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|uid|是|摄像头uid|
+|poi_id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateCameras?uid=xx&poi_id=xxx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "修改成功",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 监测点id错误
+
+****
+
+## <div id = 93>93.delCameras</div>
+
+****
+
+### 简介
+
+* 删除摄像机数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delCameras
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|id|是|摄像头数据记录id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delCameras?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "删除成功",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 94>94.getCameras</div>
+
+****
+
+### 简介
+
+* 获取摄像机数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getCameras
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|poi_id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getCameras?poi_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 5,
+        "uid": 201115202618427023,
+        "poi_id": 180,
+        "lng": 28.078953,
+        "lat": 112.887183,
+        "ip": 0,
+        "name": "视频监控",
+        "created_at": "2018-07-10 15:14:38",
+        "updated_at": "2018-10-10 10:50:30"
+    }
+]
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:| 
+|id|记录id|
+|uid|摄像头uid|
+|poi_id|监测点id|
+|lat|经度|
+|lng|纬度|
+|ip|ip|
+|name|名称|
+|created_at/updated_at|增改时间|
+
+
+#### 请求失败
+
+* token值无效
+* id错误
+
+****
+
+## <div id = 95>95.addQianXun</div>
+
+****
+
+### 简介
+
+* 增加千寻数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addQianXun
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|device_id|是|设备id|
+|monitor_account|是|监控账户|
+|monitor_account_pwd|是|监控账户密码|
+|monitor_points_id|否|监控点id|
+|monitor_points_name|否|监控点名称|
+|sik|否||
+|sis|否|
+|stand_x|否||
+|stand_y|否||
+|stand_z|否||
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addQianXun?device_id=xx&monitor_account=xx&monitor_account_pwd=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "add_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* 参数错误
+
+****
+
+## <div id = 96>96.delQianXun</div>
+
+****
+
+### 简介
+
+* 删除千寻数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delQianXun
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|id|是|id|
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delQianXun?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id值错误
+
+****
+
+## <div id = 97>97.updateQianXun</div>
+
+****
+
+### 简介
+
+* 更新千寻数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updateQianXun
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|id|是|id|
+|device_id|否|设备id|
+|monitor_account|否|监控账户|
+|monitor_account_pwd|否|监控账户密码|
+|monitor_points_id|否|监控点id|
+|monitor_points_name|否|监控点名称|
+|sik|否||
+|sis|否|
+|stand_x|否||
+|stand_y|否||
+|stand_z|否||
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateQianXun?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "update_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值无效
+* id值错误
+
+****
+
+## <div id = 98>98.getQianXun</div>
+
+****
+
+### 简介
+
+* 获取千寻数据
+* 若存在参数device_id则返回相应设备id，否则返回所有信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getQianXun
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|device_id|否|设备id|
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getQianXun?device_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 1,
+        "device_id": "0003ef000005",
+        "monitor_points_id": 6076,
+        "monitor_points_name": "beiyun_gnss",
+        "monitor_account": "ldxfcro009",
+        "monitor_account_pwd": "2d51964",
+        "sik": "S000000F8HU",
+        "sis": "92e5468c09c6fdab111e1fbdd56730aef69a9f26ab669998f6ef54a06d70f776",
+        "created_at": "2017-12-21 19:17:33",
+        "updated_at": "2018-03-28 10:33:40",
+        "deleted_at": null,
+        "stand_x": "-2186090.6182",
+        "stand_y": "5180956.2571",
+        "stand_z": "2999898.8623"
+    }
+]
+```
+##### 参数列表
+
+* 返回参数与输入数据接口[addQianXun](#95)输入参数的同名参数一致
+
+#### 请求失败
+
+* token值无效
+* id值错误
+
+****
+
+## <div id = 99>99.acceptNBData</div>
+
+****
+
+### 简介
+
+* 接受NB数据，将数据转发到mqtt队列中（接口用于订阅信息使用，不会主动调用）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/acceptNBData
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+无
+
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/acceptNBData
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+* 无
+
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* 无
+
+****
+
+## <div id = 100>100.test</div>
+
+****
+
+### 简介
+
+* 测试接口，仅供测试功能使用
 
 </font>
