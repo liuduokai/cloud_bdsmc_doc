@@ -1,4 +1,4 @@
-<font face="微软雅黑" color="black">
+<font face="微软雅黑">
 # 接口目录
 
 1. [login](#1)
@@ -79,6 +79,16 @@
 76. [alarmsDevice](#76)
 77. [alarmsCamera](#77)
 78. [UsersLog](#78)
+79. [addUserLog](#79)
+80. [addPoiInfo](#80)
+81. [getPoiInfo](#81)
+82. [updatePoiInfo](#82)
+83. [delPoiInfo](#83)
+84. [deviceData](#84)
+85. [deviceData2](#85)
+86. [login3](#86)
+87. [getMapInfo](#87)
+
 
 ****
 
@@ -5445,6 +5455,639 @@ cloud.bdsmc.net:8000/UsersLog
 
 * token值错误
 * 用户没管理员权限
+
+****
+
+## <div id = 79>79.addUserLog</div>
+
+****
+
+### 简介
+
+* 手动添加日志
+* 仅有管理员可以调用此接口
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addUserLog
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|action|是|用户操作|
+|id|是|操作用户id|
+|type|是|操作类型|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addUserLog?action=xx&id=xx&type=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "add_ok",
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+* 用户没管理员权限
+
+****
+
+## <div id = 80>80.addPoiInfo</div>
+
+****
+
+### 简介
+
+* 增加项目描述信息（接口应该已经被替代，监测点图片与监测点信息图片都储存在photos表中）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addPoiInfo
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|poi_id|是|监测点id|
+|l_point|是|左极点|
+|r_point|是|右极点|
+|info|是|文件，项目信息文件|
+#### 请求示例
+
+cloud.bdsmc.net:8000/addPoiInfo?poi_id=xx&id=xx&l_point=xx&r_point=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "poi_id": "56",
+    "path": "file/5bd1181d420e6_response.json",
+    "l_point": "1",
+    "r_point": "2",
+    "updated_at": "2018-10-25 09:10:53",
+    "created_at": "2018-10-25 09:10:53",
+    "id": 20
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:| 
+|poi_id|监测点id|
+|path|描述文件路径|
+|l_point|左极点id|
+|r_point|右极点id|
+|updated_at/created_at|增改时间|
+|记录编号|
+
+#### 请求失败
+
+* token值错误
+* 参数错误
+
+****
+
+## <div id = 81>81.getPoiInfo</div>
+
+****
+
+### 简介
+
+* 获取监测点信息（接口应该已经被替代，监测点图片与监测点信息图片都储存在photos表中）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getPoiInfo
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|poi_id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getPoiInfo?poi_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "path": "file/5bd1181d420e6_response.json",
+    "l_point": "1",
+    "r_point": "2",
+    "id": 20
+}
+```
+##### 参数列表
+
+*  参数与接口[addPoiInfo](#80)一致
+
+#### 请求失败
+
+* token值错误
+* 参数错误
+
+****
+
+## <div id = 82>82.updatePoiInfo</div>
+
+****
+
+### 简介
+
+* 更新监测点信息（接口应该已经被替代，监测点图片与监测点信息图片都储存在photos表中）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/updatePoiInfo
+
+#### 请求方式
+
+* post
+* options
+
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|poi_id|是|监测点id|
+|l_point|是|左极点|
+|r_point|是|右极点|
+|info|是|文件，项目信息文件|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updatePoiInfo?poi_id=xx&id=xx&l_point=xx&r_point=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "poi_id": "56",
+    "path": "file/5bd1181d420e6_response.json",
+    "l_point": "1",
+    "r_point": "2",
+    "updated_at": "2018-10-25 09:10:53",
+    "created_at": "2018-10-25 09:10:53",
+    "id": 20
+}
+```
+##### 参数列表
+
+*  参数与接口[addPoiInfo](#80)一致
+
+#### 请求失败
+
+* token值错误
+* 参数错误
+
+****
+
+## <div id = 83>83.delPoiInfo</div>
+
+****
+
+### 简介
+
+* 删除监测点信息（接口应该已经被替代，监测点图片与监测点信息图片都储存在photos表中）
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delPoiInfo
+
+#### 请求方式
+
+* post
+* options
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|poi_id|是|监测点id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delPoiInfo?poi_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "del_ok",
+}
+```
+##### 参数列表
+
+*  无
+#### 请求失败
+
+* token值错误
+* poi_id错误
+
+****
+
+## <div id = 84>84.deviceData</div>
+
+****
+
+### 简介
+
+* 查询指定时间段相应设备下所有传感器数据
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/deviceData
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|email|是|用户名|
+|password|是|密码|
+|device_id|是|设备mac|
+|start_time|是|开始时间|
+|end_time|是|结束时间
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/deviceData?email=xx&password=xx&device_id=xx&start_time=xx&end_time=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": "000300000001",
+    "data": {
+        "2018-08-13 17:16:10": [
+            {
+                "id": 1573570,
+                "gps_time": "2018-08-13 17:16:10",
+                "device_id": 208,
+                "displacement": 116.263785863,
+                "name": "经度"
+            },
+            ......
+        ]
+    }
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:| 
+|id|设备mac|
+|data|传感器数据，按时间分组，正常数据同一时间有六组数据|
+
+#### 请求失败
+
+* 用户名密码错误
+* 其他过滤条件存在问题 
+
+****
+
+## <div id = 85>85.deviceData2</div>
+
+****
+
+### 简介
+
+* 查询指定时间段相应设备下所有传感器数据,使用不同于[deviceData](#84)的数据格式返回
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/deviceData2
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|email|是|用户名|
+|password|是|密码|
+|device_id|是|设备mac|
+|start_time|是|开始时间|
+|end_time|是|结束时间
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/deviceData2?email=xx&password=xx&device_id=xx&start_time=xx&end_time=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "businessName": "业务名称",
+    "data": [
+        {
+            "id": 0,
+            "deviceId": "000300000002",
+            "gpsTime": "2018-08-22 19:00:00",
+            "longitude": 116.25953509,
+            "latitude": 23.316800312,
+            "altitude": 24.0403,
+            "elevationChange": 5.8,
+            "east": 2.108226,
+            "north": -0.04185899999999998
+        },
+        .....
+    ],
+    "serviceType": 1,
+    "system": "1",
+    "user": "xiashenxian@email.com"
+}
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:| 
+|businessName|业务名称|
+|data|传感器数据，同一时间所有传感器为一组数据其中各项数据见下表|
+|serviceType|服务类型|
+|system|系统|
+|user|用户|
+
+* data数据参数表
+|参数|说明|
+|:-:|:-:| 
+|id|id|
+|deviceId|设备id|
+|gpsTime|时间|
+|longitude|经度|
+|latitude|纬度|
+|altitude|海拔|
+|elevationChange|高程变化|
+|east|偏东|
+|north|偏北|
+
+#### 请求失败
+
+* 用户名密码错误
+* 其他过滤条件存在问题 
+
+****
+
+## <div id = 86>86.login3</div>
+
+****
+
+### 简介
+
+* 后台管理平台登录接口
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/login3
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|email|是|用户名|
+|password|是|密码|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/login3?email=xx&password=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "access_token": "xxx",
+    "token_type": "xxx",
+    "me": {
+        "id": xx,
+        "email": "xx",
+        "name": "xx",
+        "phone": "xx",
+        "gender": xx,
+        "id_number": "xx",
+        "home": "xx",
+        "project_id": xx,
+        "type": xx,
+        "created_at": "xx",
+        "updated_at": "xx",
+        "pro_blo": xx,
+        "project": {
+            "id": xx,
+            "name": "xx",
+            "type": xx,
+            "created_at": "xx",
+            "updated_at": "xx",
+            "lt_point": "xx",
+            "rd_point": "xx",
+            "sate_path": "xx",
+            "sate_lvl": "xx",
+            "map_path": "xx",
+            "map_change_lvl": "xx,18",
+            "pro_bord_path": "xx",
+            "user_id": xx,
+            "center_point": "xx"
+        }
+    },
+    "expires_in": xx
+}
+```
+##### 参数列表
+
+* 返回参数与[login](#1)接口一致
+
+#### 请求失败
+
+* 用户名密码错误
+* 用户不是管理员或项目负责人 
+
+****
+
+## <div id = 87>87.getMapInfo</div>
+
+****
+
+### 简介
+
+* 获取地图信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getMapInfo
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+* 无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getMapInfo?email=xx&password=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "access_token": "xxx",
+    "token_type": "xxx",
+    "me": {
+        "id": xx,
+        "email": "xx",
+        "name": "xx",
+        "phone": "xx",
+        "gender": xx,
+        "id_number": "xx",
+        "home": "xx",
+        "project_id": xx,
+        "type": xx,
+        "created_at": "xx",
+        "updated_at": "xx",
+        "pro_blo": xx,
+        "project": {
+            "id": xx,
+            "name": "xx",
+            "type": xx,
+            "created_at": "xx",
+            "updated_at": "xx",
+            "lt_point": "xx",
+            "rd_point": "xx",
+            "sate_path": "xx",
+            "sate_lvl": "xx",
+            "map_path": "xx",
+            "map_change_lvl": "xx,18",
+            "pro_bord_path": "xx",
+            "user_id": xx,
+            "center_point": "xx"
+        }
+    },
+    "expires_in": xx
+}
+```
+##### 参数列表
+
+* 返回参数与[login](#1)接口一致
+
+#### 请求失败
+
+* 用户名密码错误
+* 用户不是管理员或项目负责人 
 
 ****
 
