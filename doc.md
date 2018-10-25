@@ -1380,7 +1380,7 @@ cloud.bdsmc.net:8000/listDevices3
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |ps|是|每页数据条数|
-|pn|页码|
+|pn|是|页码|
 
 #### 请求示例
 
@@ -3138,7 +3138,7 @@ cloud.bdsmc.net:8000/addUserList
 
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
-|file|包含用户信息的文件|
+|file|是|包含用户信息的文件|
 ##### 文件中所需数据格式
 * 文件从第二行开始读取数据，第一行为表头
 
@@ -4721,7 +4721,7 @@ cloud.bdsmc.net:8000/videoHistory
 |:-:|:-:|:-:|
 |puid|是|页码|
 |begin|是|开始时间|
-|end|是结束时间|
+|end|是|结束时间|
 
 #### 请求示例
 
@@ -5586,7 +5586,7 @@ cloud.bdsmc.net:8000/addPoiInfo?poi_id=xx&id=xx&l_point=xx&r_point=xx
 |l_point|左极点id|
 |r_point|右极点id|
 |updated_at/created_at|增改时间|
-|记录编号|
+|id|记录编号|
 
 #### 请求失败
 
