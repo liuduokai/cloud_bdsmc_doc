@@ -88,6 +88,8 @@
 85. [deviceData2](#85)
 86. [login3](#86)
 87. [getMapInfo](#87)
+88. [resetPwd](#88)
+89. [getVideopic](#89)
 
 
 ****
@@ -6033,7 +6035,7 @@ cloud.bdsmc.net:8000/getMapInfo
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/getMapInfo?email=xx&password=xx
+cloud.bdsmc.net:8000/getMapInfo
 
 ****
 
@@ -6045,50 +6047,154 @@ cloud.bdsmc.net:8000/getMapInfo?email=xx&password=xx
 
 ```json
 {
-    "access_token": "xxx",
-    "token_type": "xxx",
-    "me": {
-        "id": xx,
-        "email": "xx",
-        "name": "xx",
-        "phone": "xx",
-        "gender": xx,
-        "id_number": "xx",
-        "home": "xx",
-        "project_id": xx,
-        "type": xx,
-        "created_at": "xx",
-        "updated_at": "xx",
-        "pro_blo": xx,
-        "project": {
-            "id": xx,
-            "name": "xx",
-            "type": xx,
-            "created_at": "xx",
-            "updated_at": "xx",
-            "lt_point": "xx",
-            "rd_point": "xx",
-            "sate_path": "xx",
-            "sate_lvl": "xx",
-            "map_path": "xx",
-            "map_change_lvl": "xx,18",
-            "pro_bord_path": "xx",
-            "user_id": xx,
-            "center_point": "xx"
-        }
-    },
-    "expires_in": xx
+    {
+    "lat": 27.901,
+    "lng": 112.543,
+    "top": 111.867599,
+    "right": 27.860932,
+    "left": 28.500678,
+    "bottom": 112.798691,
+    "maxZoom": 18,
+    "minZoom": 11,
+    "vp": "/NingXiang/street",
+    "vt": "/NingXiang/satellite",
+    "border": "......",
+    "zom": null
 }
 ```
 ##### 参数列表
 
-* 返回参数与[login](#1)接口一致
+|参数|说明|
+|:-:|:-:| 
+|lat|经度|
+|lng|纬度|
+|top|上边界|
+|right|右边界|
+|left|左边界|
+|bottom|下边界|
+|maxZoom|最大缩放|
+|minZoom|最小缩放|
+|vt|地图路径|
+|vp|地图路径|
+#### 请求失败
+
+* 当前用户不属于任何项目
+
+****
+
+## <div id = 88>88.resetPwd</div>
+
+****
+
+### 简介
+
+* 通过手机号码重置密码
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/resetPwd
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:| 
+|phone|是|手机号码|
+|code|是|验证码|
+|password|是|新密码
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/resetPwd?phone=xx&code=xx&password=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "message": "修改密码成功",
+}
+```
+##### 参数列表
+
+* 无
 
 #### 请求失败
 
-* 用户名密码错误
-* 用户不是管理员或项目负责人 
+* 手机号码不存在
+* 验证码错误
+* 未请求过验证码
 
+****
+
+## <div id = 89>89.getVideopic</div>
+
+****
+
+### 简介
+
+* 获取摄像头图片数据的最后一张图片
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getVideopic
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+无
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/getVideopic
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": "201115202031224463",
+        "url": "/VideoData/SNAPSHOT/201115202031224463/00/20181018/20181018095733_0007.jpg"
+    },
+    ......
+]
+```
+##### 参数列表
+
+|参数|说明|
+|:-:|:-:| 
+|id|摄像头pid|
+|url|第一张图片路径|
+
+#### 请求失败
+
+* token值无效
+  
 ****
 
 </font>
