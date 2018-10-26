@@ -6852,7 +6852,7 @@ cloud.bdsmc.net:8000/addMoreDevice
 |参数名|是否必填|说明|
 |:-:|:-:|:-:|
 |poi_id|是|监测点id|
-|devices|设备列表|
+|devices|是|设备列表|
 
 #### 请求示例
 
