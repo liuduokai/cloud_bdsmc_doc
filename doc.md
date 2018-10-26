@@ -102,6 +102,7 @@
 98. [getQianXun](#98)
 99. [acceptNBData](#99)
 100. [test](#100)
+101. [addMoreDevice](#101)
 
 ****
 
@@ -6823,5 +6824,62 @@ cloud.bdsmc.net:8000/acceptNBData
 ### 简介
 
 * 测试接口，仅供测试功能使用
+
+****
+
+## <div id = 101>101.addMoreDevice</div>
+
+****
+
+### 简介
+
+* 一次性添加多个设备信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addMoreDevice
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|poi_id|是|监测点id|
+|devices|设备列表|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addMoreDevice?poi_id=xx&devices=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+   "message": "add_success" 
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+* 监测点id有误
+
+****
 
 </font>
