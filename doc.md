@@ -103,6 +103,10 @@
 99. [acceptNBData](#99)
 100. [test](#100)
 101. [addMoreDevice](#101)
+102. [addDeciveTest](#102)
+103. [delDeciveTest](#103)
+104. [updateDeciveTest](#104)
+105. [getDeciveTest](#105)
 
 ****
 
@@ -4168,6 +4172,7 @@ cloud.bdsmc.net:8000/listDevices2?id=xx
 ### 简介
 
 * 增加设备
+* 同时将部分数据插入到gnss_device_info表中
   
 ### 请求
 
@@ -6882,4 +6887,246 @@ cloud.bdsmc.net:8000/addMoreDevice?poi_id=xx&devices=xx
 
 ****
 
+## <div id = 102>102.addDeciveTest</div>
+
+****
+
+### 简介
+
+* 添加设备测试信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addDeciveTest
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|device_table_id|否|设备表中对应设备id|
+|test_start_time|否|测试开始时间|
+|test_end_time|否|测试结束时间|
+|test_result|否|测试结果|
+|online|否|在线|
+|device_hex_id|否|设备mac|
+|device_name|否|设备名称|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addDeciveTest?device_name=xx&test_result=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+   "message": "添加成功" 
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+
+****
+
+## <div id = 103>103.getDeciveTest</div>
+
+****
+
+### 简介
+
+* 获取设备测试信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/getDeciveTest
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|device_hex_id|否|设备mac，若有此参数则返回相应mac设备的测试信息，否则返回表中所有信息|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addDeciveTest?device_hex_id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+[
+    {
+        "id": 125,
+        "device_table_id": 11,
+        "test_start_time": "0000-00-00 00:00:00",
+        "test_end_time": "0000-00-00 00:00:00",
+        "test_result": 1,
+        "test_status": null,
+        "online": 1,
+        "device_hex_id": "123",
+        "device_name": "*****",
+        "created_at": "2018-10-30 11:18:24",
+        "updated_at": "2018-10-30 11:44:32"
+    },
+	......
+]
+```
+##### 参数列表
+
+* 参数与接口[addDeciveTest](#102)中添加设备时提供的同名参数含义一致
+* 其他参数
+|参数名|说明|
+|:-:|:-:|
+|created_at|创建时间|
+|updated_at|更新时间|
+
+#### 请求失败
+
+* token值错误
+
+****
+
+## <div id = 104>104.delDeciveTest</div>
+
+****
+
+### 简介
+
+* 删除设备测试信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/delDeciveTest
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备测试表中记录id|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/delDeciveTest?id=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+   "message": "删除成功" 
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+
+****
+
+## <div id = 105>105.updateDeciveTest</div>
+
+****
+
+### 简介
+
+* 更新设备测试信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addDeciveTest
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|id|是|设备测试表中记录id|
+|device_table_id|否|设备表中对应设备id|
+|test_start_time|否|测试开始时间|
+|test_end_time|否|测试结束时间|
+|test_result|否|测试结果|
+|online|否|在线|
+|device_hex_id|否|设备mac|
+|device_name|否|设备名称|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addDeciveTest?device_name=xx&test_result=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+   "message": "修改成功" 
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+
+****
 </font>
