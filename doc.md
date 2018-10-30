@@ -107,6 +107,7 @@
 103. [delDeciveTest](#103)
 104. [updateDeciveTest](#104)
 105. [getDeciveTest](#105)
+106. [addMoreDeciveTest](#106)
 
 ****
 
@@ -7082,7 +7083,7 @@ cloud.bdsmc.net:8000/delDeciveTest?id=xx
 
 #### 请求地址
 
-cloud.bdsmc.net:8000/addDeciveTest
+cloud.bdsmc.net:8000/updateDeciveTest
 
 #### 请求方式
 
@@ -7099,13 +7100,14 @@ cloud.bdsmc.net:8000/addDeciveTest
 |test_start_time|否|测试开始时间|
 |test_end_time|否|测试结束时间|
 |test_result|否|测试结果|
+|test_status|否|测试状态|
 |online|否|在线|
 |device_hex_id|否|设备mac|
 |device_name|否|设备名称|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/addDeciveTest?device_name=xx&test_result=xx
+cloud.bdsmc.net:8000/updateDeciveTest?id=xx&device_name=xx&test_result=xx
 
 ****
 
@@ -7129,4 +7131,65 @@ cloud.bdsmc.net:8000/addDeciveTest?device_name=xx&test_result=xx
 * token值错误
 
 ****
+
+## <div id = 106>106.addMoreDeciveTest</div>
+
+****
+
+### 简介
+
+* 批量添加设备测试信息
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/addMoreDeciveTest
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|devices_test|是|json格式批量设备测试信息|
+
+* json键值对中的参数
+
+|参数|说明|
+|:-:|:-:|
+|key|设备mac|
+|value|设备名称|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/addMoreDeciveTest?devices_test=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+   "message": "添加成功" 
+}
+```
+##### 参数列表
+
+* 无
+
+#### 请求失败
+
+* token值错误
+
+****
+
 </font>
