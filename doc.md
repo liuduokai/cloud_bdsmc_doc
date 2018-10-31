@@ -7260,7 +7260,7 @@ cloud.bdsmc.net:8000/updateDeciveTest?device_id=xx&start_time=xx&end_time=xx
 
 * token值错误
 * 设备id错误
-* 
+* 请求时间段中没有设备数据
 
 ****
 
