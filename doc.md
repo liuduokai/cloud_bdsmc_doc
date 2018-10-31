@@ -4174,7 +4174,8 @@ cloud.bdsmc.net:8000/listDevices2?id=xx
 ### 简介
 
 * 增加设备
-* 同时将部分数据插入到gnss_device_info表中
+* 将所有gnss设备加入qianxun和gnss_device_info表中
+* 将所有裂缝计加入crack_device_info表中
   
 ### 请求
 
