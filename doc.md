@@ -104,10 +104,11 @@
 100. [test](#100)
 101. [addMoreDevice](#101)
 102. [addDeciveTest](#102)
-103. [delDeciveTest](#103)
-104. [updateDeciveTest](#104)
-105. [getDeciveTest](#105)
+103. [getDeciveTest](#103)
+104. [delDeciveTest](#104)
+105. [updateDeciveTest](#105)
 106. [addMoreDeciveTest](#106)
+107. [testDeviceData](#107)
 
 ****
 
@@ -7189,6 +7190,77 @@ cloud.bdsmc.net:8000/addMoreDeciveTest?devices_test=xx
 #### 请求失败
 
 * token值错误
+
+****
+
+
+## <div id = 107>107.testDeviceData</div>
+
+****
+
+### 简介
+
+* 获取设备数据
+* 接口[deviceData](#84)无需账户名密码通过token验证用户身份版本
+  
+### 请求
+
+#### 请求地址
+
+cloud.bdsmc.net:8000/testDeviceData
+
+#### 请求方式
+
+* post
+* options
+* get
+
+#### 参数
+
+|参数名|是否必填|说明|
+|:-:|:-:|:-:|
+|device_id|是|设备id|
+|start_time|是|开始时间|
+|end_time|是|结束时间|
+
+#### 请求示例
+
+cloud.bdsmc.net:8000/updateDeciveTest?device_id=xx&start_time=xx&end_time=xx
+
+****
+
+### 返回
+
+#### 请求成功
+
+##### 返回示例
+
+```json
+{
+    "id": "000300000001",
+    "data": {
+        "2018-08-13 17:16:10": [
+            {
+                "id": 1573570,
+                "gps_time": "2018-08-13 17:16:10",
+                "device_id": 208,
+                "displacement": 116.263785863,
+                "name": "经度"
+            },
+            ......
+        ]
+    }
+}
+```
+##### 参数列表
+
+* 与接口[deviceData](#84)返回参数一致
+
+#### 请求失败
+
+* token值错误
+* 设备id错误
+* 
 
 ****
 
