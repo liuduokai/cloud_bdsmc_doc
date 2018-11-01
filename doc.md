@@ -2065,7 +2065,7 @@ cloud.bdsmc.net:8000/listProjects
 
 ### 简介
 
-* 接口实现文件已被注释
+* 接口实现文件已被~~注释~~删除
 
 ### 请求
 
@@ -5156,8 +5156,8 @@ cloud.bdsmc.net:8000/cameraAlarmsById?id=xx&ps=xx&pn=xx
 ### 简介
 
 * 返回传感器报警信息
-* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
-* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数且为管理员账户则返回项目下所有监测点的报警信息，普通用户返回所属项目下所有账户信息
+* ~~接口目前仅支持单条件过滤，暂时不支持多条件过滤~~已实现
   
 ### 请求
 
@@ -5176,16 +5176,14 @@ cloud.bdsmc.net:8000/alarmsSensor
 |:-:|:-:|:-:|
 |ps|是|页面大小|
 |pn|是|页码|
-|id2|否|设备id2|
-|id|否|设备id|
-|lvl|否|警报等级|
+|mac|否|设备mac|
+|type|否|报警等级|
 |starttime|否|开始时间|
 |endtime|否|结束时间|
-|poiid|否|监测点id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/alarmsSensor?id=xx
+cloud.bdsmc.net:8000/alarmsSensor?ps=xx&pn=xx
 
 ****
 
@@ -5197,8 +5195,8 @@ cloud.bdsmc.net:8000/alarmsSensor?id=xx
 
 ```json
 {
-    "totalCount": 99,
-    "alarms": [
+    "count": 99,
+    "result": [
         {
             "id": 940,
             "content": "偏北超过二级预警下限1次",
@@ -5229,8 +5227,8 @@ cloud.bdsmc.net:8000/alarmsSensor?id=xx
 
 |参数|说明|
 |:-:|:-:|
-|totalCount|预警信息总数|
-|alarms|预警信息|
+|count|预警信息总数|
+|result|预警信息|
 #### 请求失败
 
 * token值错误
@@ -5246,8 +5244,8 @@ cloud.bdsmc.net:8000/alarmsSensor?id=xx
 ### 简介
 
 * 返回设备报警信息
-* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
-* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数且为管理员账户则返回项目下所有监测点的报警信息，普通用户返回所属项目下所有账户信息
+* ~~接口目前仅支持单条件过滤，暂时不支持多条件过滤~~已实现
   
 ### 请求
 
@@ -5266,16 +5264,14 @@ cloud.bdsmc.net:8000/alarmsDevice
 |:-:|:-:|:-:|
 |ps|是|页面大小|
 |pn|是|页码|
-|id2|否|设备id2|
-|id|否|设备id|
-|lvl|否|警报等级|
+|mac|否|设备mac|
+|type|否|警报信息类型|
 |starttime|否|开始时间|
 |endtime|否|结束时间|
-|poiid|否|监测点id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/alarmsDevice?id=xx
+cloud.bdsmc.net:8000/alarmsDevice?ps=xx&pn=xx
 
 ****
 
@@ -5287,8 +5283,8 @@ cloud.bdsmc.net:8000/alarmsDevice?id=xx
 
 ```json
 {
-    "totalCount": 2,
-    "alarms": [
+    "count": 2,
+    "result": [
         {
             "id": 88,
             "content": "12:05:00 已上线",
@@ -5314,8 +5310,8 @@ cloud.bdsmc.net:8000/alarmsDevice?id=xx
 
 |参数|说明|
 |:-:|:-:|
-|totalCount|预警信息总数|
-|alarms|预警信息|
+|count|预警信息总数|
+|result|预警信息|
 #### 请求失败
 
 * token值错误
@@ -5331,8 +5327,8 @@ cloud.bdsmc.net:8000/alarmsDevice?id=xx
 ### 简介
 
 * 返回摄像头报警信息
-* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数管理员账户返回项目下所有监测点的报警信息，普通用户返回所属监测点下所有账户信息
-* 接口目前仅支持单条件过滤，暂时不支持多条件过滤
+* 根据不同条件过滤警报信息，返回过滤后的警报信息，若未传入参数且为管理员账户则返回项目下所有监测点的报警信息，普通用户返回所属项目下所有账户信息
+* ~~接口目前仅支持单条件过滤，暂时不支持多条件过滤~~已实现
   
 ### 请求
 
@@ -5351,16 +5347,15 @@ cloud.bdsmc.net:8000/alarmsCamera
 |:-:|:-:|:-:|
 |ps|是|页面大小|
 |pn|是|页码|
-|id2|否|摄像机id2|
-|id|否|摄像机id|
-|lvl|否|警报等级|
+|mac|否|摄像机uid|
+|mac|否|设备mac|
+|type|否|警报信息类型|
 |starttime|否|开始时间|
 |endtime|否|结束时间|
-|poiid|否|监测点id|
 
 #### 请求示例
 
-cloud.bdsmc.net:8000/alarmsCamera?id=xx
+cloud.bdsmc.net:8000/alarmsCamera?ps=xx&pn=xx
 
 ****
 
@@ -5372,8 +5367,8 @@ cloud.bdsmc.net:8000/alarmsCamera?id=xx
 
 ```json
 {
-    "totalCount": 1,
-    "alarms": [
+    "count": 1,
+    "result": [
         {
             "id": 1,
             "content": "21",
