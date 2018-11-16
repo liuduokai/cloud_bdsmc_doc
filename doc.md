@@ -3946,7 +3946,6 @@ cloud.bdsmc.net:8000/addPoi2
 |name|是|监测点名称|
 |location|是|监测点位置|
 |project_id|是|监测点所属项目id|
-|id2|是|监测点id2|
 |user_id|否|管理用户id|
 |lng|否|经度|
 |lat|否|纬度|
@@ -4006,7 +4005,6 @@ cloud.bdsmc.net:8000/updatePoi2
 |name|否|监测点名称|
 |location|否|监测点位置|
 |project_id|否|监测点所属项目id|
-|id2|否|监测点id2|
 |user_id|否|管理用户id|
 |lng|否|经度|
 |lat|否|纬度|
@@ -4761,7 +4759,7 @@ cloud.bdsmc.net:8000/videoHistory?puid=xx&begin=xx&end=xx
 
 ### 简介
 
-* 查看insar数据，当有用户type==3时仅返回mean_velocity<-20的值
+* 返回当前用户所属项目的insar数据，当有用户type==3时仅返回mean_velocity<-20的值
   
 ### 请求
 
